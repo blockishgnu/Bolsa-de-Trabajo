@@ -12,6 +12,8 @@ if(isset($_SESSION['usuario'])){
     $tipo= $_SESSION['tipo'];
     $res=mysqli_query($con,"SELECT * FROM sab_clientes WHERE username='".$usuario."'");
     while ($rowl=mysqli_fetch_array($res)) {
+   $idbusqueda=$rowl['idcliente'];
+
 echo "
 <div style='background-color: #b3ffb3;'>
 <br>
