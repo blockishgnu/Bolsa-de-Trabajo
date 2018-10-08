@@ -1,21 +1,31 @@
 <?php
 session_start();
 include("../connect.php");
+error_reporting(0);
 
 if(isset($_SESSION['usuario'])){
 
 $usuario=$_SESSION['usuario'];
 
-	echo "
-	<div style='background-color: #b3ffb3;'>
-	<br>
-	<h3 style=' margin-left: 30px; margin-top:-10px;'>Bienvenido: <b>".$usuario."</b></h3>
-	<br><img src='../../public/sab/img/adm.jpg' class='img-circle' alt='User Image' width='70px;' style='border:4px solid black;  margin-left: 60px;' >
-	<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/img/logout.png' width='60px;' style=' margin-right: 30px;' align='right'></a>
-	<br>
-	<br>
-	</div>
-	";
+$res=mysqli_query($con,"SELECT * FROM sab_clientes WHERE username='".$usuario."'");
+while ($rowl=mysqli_fetch_array($res)) {
+$idbusqueda=$rowl['idcliente'];
+
+echo "
+<div style='background-color: #b3ffb3;'>
+<br>
+<h3 style=' margin-left: 30px; margin-top:-10px;'>Bienvenido: <b>".$usuario."</b></h3>
+";
+?>
+<br><img src='data:image/png;base64,<?php echo base64_encode($rowl['logo']); ?>' class='img-circle' alt='User Image' width='70px;' style='border:4px solid black;  margin-left: 60px;' >
+<?php
+echo "
+<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/img/logout.png' width='60px;' style=' margin-right: 30px;' align='right'></a>
+<br>
+<br>
+</div>
+";
+}
 
 
 }else{
@@ -413,7 +423,6 @@ a.agregar:hover {
 		text-decoration:none;
 }
 
-
 </style>
 <nav class="navbar navbar-inverse">
  <div class="container-fluid">
@@ -424,9 +433,8 @@ a.agregar:hover {
 		 <li ><a href="../administrador.php">Home</a></li>
 		 <li><a href="../vacantes/vacantes.php">Vacantes</a></li>
 		 <li class="active"><a href="../candidatos/consulta.php">Candidatos</a></li>
-		 <li><a href="../clientes/clientes.php">Clientes</a></li>
+		 <li><a href="../actualizar/actualizar.php">Actualizar Perfil</a></li>
 		 <li><a href="../reclutadores/reclutadores.php">Reclutadores</a></li>
-
 	 </ul>
  </div>
 </nav>
@@ -446,9 +454,9 @@ function actualizarstatus(){
   $.ajax({
         type:'POST',
         url: 'cambiarstatus.php',
-        data: {idcandidato:$('#idcandidato').val(),estatus:$('#estatusActual').val()},
+        data: {idpostulacion:$('#idpostulacion').val(),estatus:$('#estatusAnt').val()},
         success:function(data){
-      window.location.href="consulta.php";
+      //window.location.href="consulta.php";
              },
              error:function(data){
               //registro fallido
@@ -472,6 +480,9 @@ function mostrarcandidatos(username){
              }
            });
 }
+
+
+
 </script>
 
 				<section class="content">
@@ -485,7 +496,6 @@ function mostrarcandidatos(username){
 									<tr>
 										<th style="text-align: center !important;"></th>
 										<th style="text-align: center !important;">Nombre</th>
-										<th style="text-align: center !important;">En Búsqueda</th>
 										<th style="text-align: center !important;">Categoría</th>
 										<th style="text-align: center !important;">Categoría</th>
 										<th style="text-align: center !important;">Categoría</th>
@@ -499,7 +509,13 @@ function mostrarcandidatos(username){
 								</thead>
 								<tbody>
 									<?php
-									$result = mysqli_query($con,"SELECT * FROM `sab_candidatos`");
+									$resvac = mysqli_query($con,"SELECT * FROM sab_vacantes WHERE idcliente='".$idbusqueda."'");
+									while($rowvac=mysqli_fetch_array($resvac)){
+										$idpos=$rowvac['idvacante'];
+										$respos= mysqli_query($con,"SELECT * FROM sab_postulaciones WHERE idvacante ='".$idpos."' ");
+										while($rowpos=mysqli_fetch_array($respos)){
+											$userpos=$rowpos['username'];
+									$result = mysqli_query($con,"SELECT * FROM `sab_candidatos` WHERE username='".$userpos."'");
 									while ($row = mysqli_fetch_array ($result)) {
 										$categoria1='';
 										$categoria2='';
@@ -524,21 +540,6 @@ function mostrarcandidatos(username){
 										<tr>
 										<th><i class='fa fa-odnoklassniki'></i></th>
 										<th>".$row['nombre']."</th>
-										<th>";
-										?>
-	                    <select id="<?= $row['idcandidato'] ?>" onchange='actualizar_estatus("<?= $row['username'];?>","<?= $row['nombre'];?>","<?= $row['idcandidato'];?>","<?= $row['estatus_busqueda']; ?>");' >
-										<?php
-
-										if($row['estatus_busqueda']!='ACTIVO'){
-											echo "<option value ='ACTIVO'>ACTIVO</option>";
-										}
-										if($row['estatus_busqueda']!='NO ACTIVO'){
-											echo "<option value ='NO ACTIVO'>NO ACTIVO</option>";
-										}
-                   echo"
-										<option value =".$row['estatus_busqueda']." selected>".$row['estatus_busqueda']."</option>
-										</select>
-									  </th>
 										<th>".$categoria."</th>
 										<th>".$categoria2."</th>
 										<th>".$categoria3."</th>
@@ -557,7 +558,9 @@ function mostrarcandidatos(username){
 									 </th>
                    <tr>
 									<?php
-									}
+								}
+							}
+						}
 									 ?>
 								</tbody>
 							</table>
@@ -600,7 +603,7 @@ function mostrarcandidatos(username){
 										</div>
 									</div>
 									<div class="modal-footer" style="background-color:#d2d6de !important">
-                    <a type="button" href="#close" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</a>
+                   <a type="button" href="#close" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</a>
 									</div>
 								</div>
 						</div>

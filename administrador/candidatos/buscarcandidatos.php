@@ -6,10 +6,33 @@ $result= mysqli_query($con,"SELECT * FROM sab_postulaciones WHERE username='".$u
 while($row=mysqli_fetch_array($result)){
   $res= mysqli_query($con,"SELECT * FROM sab_vacantes WHERE idvacante='".$row['idvacante']."'");
   while($rowv=mysqli_fetch_array($res)){
+    $enum=array(
+      0=> 'Postulada',
+      1=> 'CV Visto',
+      2=> 'En Proceso',
+      3=> 'Finalista',
+      4=> 'Terminado',
+    );
+
 echo "
 <tr>
+<input id='idpostulacion' value='".$row['idpostulacion']."' name='idpostulacion' type='hidden'>
 <th> ".$rowv['nombre']." </th>
-<th> ".$row['estatus']."</th>
+<th>
+  <select id='estatusAnt' onchange='actualizar();'>
+  ";
+  for($i=0;$i<5;$i++){
+  if ($row['estatus'] == $enum[$i]) {
+    echo '<option value="'.$row['estatus'].'" selected>'.$row['estatus'].'</option>';
+  }
+  else {
+    echo '<option value="'.$enum[$i].'">'.$enum[$i].'</option>';
+  }
+//<option value='".$row['estatus']." '> ".$row['estatus']." </option>
+}
+echo "
+</select>
+ </th>
 <th> ".$row['fecha']."</th>
 </tr>
 

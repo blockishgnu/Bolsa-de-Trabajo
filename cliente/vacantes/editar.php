@@ -200,7 +200,7 @@ if(isset($_SESSION['usuario'])){
      <li><a href="../cliente.php">Home</a></li>
      <li class="active"><a href="../vacantes/vacantes.php">Vacantes</a></li>
      <li><a href="../candidatos/consulta.php">Candidatos</a></li>
-     <li><a href="../actualizar/actualizar.php">Actualziar Perfil</a></li>
+     <li><a href="../actualizar/actualizar.php">Actualizar Perfil</a></li>
      <li><a href="../reclutadores/reclutadores.php">Reclutadores</a></li>
 
    </ul>

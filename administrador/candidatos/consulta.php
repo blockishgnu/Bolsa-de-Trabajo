@@ -457,6 +457,21 @@ function actualizarstatus(){
            });
 }
 
+function actualizar(){
+  $.ajax({
+        type:'POST',
+        url: 'status.php',
+        data: {idpostulacion:$('#idpostulacion').val(),estatus:$('#estatusAnt').val()},
+        success:function(data){
+      //window.location.href="consulta.php";
+             },
+             error:function(data){
+              //registro fallido
+              alert("Registro fallido");
+             }
+           });
+}
+
 function mostrarcandidatos(username){
    window.location.href="#candidatoModal";
   $.ajax({
