@@ -276,64 +276,127 @@ if(isset($_SESSION['usuario'])){
   						<div class="col-md-8">
   							<div class="box box-primary">
   								<div class="box-header with-border">
-  									<h3 class="box-title">Vacantes por Categorías</h3>
+  									<h3 class="box-title"><h3><b>Vacantes por Categorías</b></h3></h3>
   								</div>
 
   								<div class="box-body">
   									<div class="row">
-  										<div class="col-md-8 col-xs-12">
-  											<div class="chart-responsive">
-  												<canvas id="pieChart" style="height:250px"></canvas>
-  											</div>
-  										</div>
+
 
   										<div class="col-md-4 col-xs-12">
   											<ul class="chart-legend clearfix" style="font-size: 17px !important;">
   												<?php
-  													while ($row = mysqli_fetch_array ($result4)) {
-                              echo"id: ".$row['idcategoria'];
+                          $ad=0;
+                          $bio=0;
+                          $com=0;
+                          $con=0;
+                          $cont=0;
+                          $crea=0;
+                          $der=0;
+                          $edu=0;
+                          $ing=0;
+                          $log=0;
+                          $man=0;
+                          $mer=0;
+                          $rec=0;
+                          $sal=0;
+                          $sec=0;
+                          $seg=0;
+                          $tec=0;
+                          $tur=0;
+                          $ven=0;
+                          $vet=0;
+  													while ($row = mysqli_fetch_array ($result4)){
   														if ($row['idcategoria']==1)
-  															echo '<li><i class="fa fa-circle-o text-red"></i> Administrativos</li>';
+                               $ad++;
   														else if ($row['idcategoria']==2)
-  															echo '<li><i class="fa fa-circle-o text-yellow"></i> Biología</li>';
+                               $bio++;
   														else if ($row['idcategoria']==3)
-  															echo '<li><i class="fa fa-circle-o text-aqua"></i> Comunicaciones</li>';
+                              $com++;
   														else if ($row['idcategoria']==4)
-  															echo '<li><i class="fa fa-circle-o text-blue"></i> Construcción</li>';
+                              $con++;
   														else if ($row['idcategoria']==5)
-  															echo '<li><i class="fa fa-circle-o text-black"></i> Contabilidad</li>';
+                              $cont++;
   														else if ($row['idcategoria']==6)
-  															echo '<li><i class="fa fa-circle-o text-light-blue"></i> Creatividad, Producción y Diseño Comercial</li>';
+                              $crea++;
   														else if ($row['idcategoria']==7)
-  															echo '<li><i class="fa fa-circle-o text-green"></i> Derecho y Leyes</li>';
+                              $der++;
   														else if ($row['idcategoria']==8)
-  															echo '<li><i class="fa fa-circle-o text-gray"></i> Educación</li>';
+                              $edu++;
   														else if ($row['idcategoria']==9)
-  															echo '<li><i class="fa fa-circle-o text-navy"></i> Ingeniería</li>';
+                              $ing++;
   														else if ($row['idcategoria']==10)
-  															echo '<li><i class="fa fa-circle-o text-teal"></i> Logística, Transportación y Distribución</li>';
+                              $log++;
   														else if ($row['idcategoria']==11)
-  															echo '<li><i class="fa fa-circle-o text-olive"></i> Manufactura, Producción y Operación</li>';
+                              $man++;
   														else if ($row['idcategoria']==12)
-  															echo '<li><i class="fa fa-circle-o text-lime"></i> Mercadotecnia, Publicidad y Relaciones Públicas</li>';
+                              $mer++;
   														else if ($row['idcategoria']==13)
-  															echo '<li><i class="fa fa-circle-o text-orange"></i> Recursos Humanos</li>';
+                              $rec++;
   														else if ($row['idcategoria']==14)
-  															echo '<li><i class="fa fa-circle-o text-fuchsia"></i> Salud y Belleza</li>';
+                              $sal++;
   														else if ($row['idcategoria']==15)
-  															echo '<li><i class="fa fa-circle-o text-purple"></i> Sector Salud</li>';
+                              $sec++;
   														else if ($row['idcategoria']==16)
-  															echo '<li><i class="fa fa-circle-o text-maroon"></i> Seguro y Reaseguro</li>';
+                              $seg++;
   														else if ($row['idcategoria']==17)
-  															echo '<li><i class="fa fa-circle-o text-gold"></i> Tecnologías de la Información / Sistemas</li>';
+                              $tec++;
   														else if ($row['idcategoria']==18)
-  															echo '<li><i class="fa fa-circle-o text-salmon"></i> Turismo, Hospitalidad y Gastronomía</li>';
+                              $tur++;
   														else if ($row['idcategoria']==19)
-  															echo '<li><i class="fa fa-circle-o text-sienna"></i> Ventas</li>';
+                              $ven++;
   														else if ($row['idcategoria']==20)
-  															echo '<li><i class="fa fa-circle-o text-pink"></i> Veterinaria / Zoología</li>';
+                              $vet++;
   													}
+
+                            if($ad!=0)
+                            echo "<h3><li><i class='fa fa-circle-o text-red'></i> Administrativos: <b>".$ad."</b></li></h3>";
+                            if($bio!=0)
+                            echo "<h3><li><i class='fa fa-circle-o text-yellow'></i> Biología: <b>".$bio."</b></li></h3>";
+                            if($com!=0)
+                            echo"<h3><li><i class='fa fa-circle-o text-aqua'></i> Comunicaciones: <b>".$com."</b></li></h3>";
+                            if($con!=0)
+                            echo"<h3><li><i class='fa fa-circle-o text-blue'></i> Construcción: <b>".$con."</b></li></h3>";
+                            if($cont!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-black"></i> Contabilidad: <b>'.$cont.'</b></li></h3>';
+                            if($crea!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-light-blue"></i> Creatividad, Producción y Diseño Comercial: <b>'.$crea.'</b></li></h3>';
+                            if($der!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-green"></i> Derecho y Leyes: <b>'.$der.'</b></li></h3>';
+                            if($edu!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-gray"></i> Educación: <b>'.$edu.'</b></li></h3>';
+                            if($ing!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-navy"></i> Ingeniería: <b>'.$ing.'</b></li></h3>';
+                            if($log!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-teal"></i> Logística, Transportación y Distribución: <b>'.$log.'</b></li></h3>';
+                            if($man!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-olive"></i> Manufactura, Producción y Operación: <b>'.$man.'</b></li></h3>';
+                            if($mer!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-lime"></i> Mercadotecnia, Publicidad y Relaciones Públicas: '.$mer.'</li></h3>';
+                            if($rec!=0)
+                            echo'<h3><li><i class="fa fa-circle-o text-orange"></i> Recursos Humanos: <b>'.$rec.'</b></li></h3>';
+                            if($sal!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-fuchsia"></i> Salud y Belleza: <b>'.$sal.'</b></li></h3>';
+                            if($sec!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-purple"></i> Sector Salud: <b>'.$sec.'</b></li></h3>';
+                            if($seg!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-maroon"></i> Seguro y Reaseguro: <b>'.$seg.'</b></li></h3>';
+                            if($tec!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-gold"></i> Tecnologías de la Información / Sistemas: <b>'.$tec.'</b></li></h3>';
+                            if($tur!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-salmon"></i> Turismo, Hospitalidad y Gastronomía: <b>'.$tur.'</b></li></h3>';
+                            if($ven!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-sienna"></i> Ventas: <b>'.$ven.'</b></li></h3';
+                            if($vet!=0)
+                            echo '<h3><li><i class="fa fa-circle-o text-pink"></i> Veterinaria / Zoología: <b>'.$vet.'</b></li></h3>';
+
+
+
+
   												?>
+
+
+
   											</ul>
   										</div>
   									</div>

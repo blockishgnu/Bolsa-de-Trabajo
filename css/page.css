@@ -1,0 +1,173 @@
+/* This code is only meant for previewing your Reflow design. */
+.primaryContainer {
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+    width: 100%;
+}
+
+#HEADER {
+    float: left;
+    height: 400px;
+    margin-left: 0%;
+    margin-top: 50px;
+    clear: none;
+    width: 100%;
+    margin-right: 0%;
+    background-color: rgb(0, 134, 98);
+    background-image:url("img/banner.JPG");
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: 0% 50%;
+    background-repeat: repeat repeat;
+}
+
+#menu {
+    float: left;
+    height: 50px;
+    clear: none;
+    width: 100%;
+    background-color: rgb(0, 134, 98);
+    position: fixed;
+    opacity: 1;
+}
+
+#title {
+    float: left;
+    height: 53px;
+    margin-left: 24.43379%;
+    margin-top: 228px;
+    clear: none;
+    width: 51.199884%;
+}
+
+#selec_lists {
+    float: left;
+    height: 57px;
+    margin-left: 0%;
+    margin-top: -60px;
+    clear: both;
+    width: 100%;
+}
+
+#Body {
+    float: left;
+    height: 374px;
+    margin-left: 0%;
+    margin-top: 0px;
+    clear: both;
+    width: 100%;
+}
+
+#vacante1 {
+    float: left;
+    height: 100%;
+    margin-left: 25%;
+    margin-top: 0px;
+    clear: none;
+    width: 50%;
+    margin-right: 0%;
+    position: relative;
+    background-color: red;
+}
+
+#bg_vacante1 {
+    float: left;
+    height: 268px;
+    margin-left: 0%;
+    margin-top: 106px;
+    clear: none;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-right: 0%;
+}
+
+#im_vacante1 {
+    float: left;
+    height: 180px;
+    clear: none;
+    width: 180px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    position: absolute;
+    top: 43px;
+    left: 65.71875px;
+    background-image:url("img/gerente%20gral.JPG");
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: repeat repeat;
+}
+
+body {
+    background-color: rgb(229, 229, 229);
+}
+
+#text {
+    float: left;
+    font-size: 30px;
+    width: 88.997647%;
+    height: auto;
+    text-align: center;
+    font-weight: 900;
+    line-height: 1em;
+    margin-left: 7.077647%;
+    margin-top: 8px;
+    clear: none;
+    min-height: 35px;
+    font-family: open-sans;
+    color: black;
+}
+
+#formgroup {
+    float: left;
+    height: 36px;
+    display: block;
+    text-align: left;
+    margin-left: 34.914707%;
+    margin-top: 21px;
+    clear: none;
+    width: 32.151118%;
+}
+
+#select {
+    float: none;
+    height: 30px;
+    padding: 0px;
+    font-size: 1em;
+    display: block;
+    width: 100%;
+}
+
+#text1 {
+    float: none;
+    font-size: 1em;
+    width: auto;
+    height: auto;
+    text-align: left;
+    font-weight: normal;
+    line-height: 1em;
+    padding: 0.2em 0em;
+    display: none;
+}
+
+#footer {
+    float: left;
+    height: 50px;
+    clear: none;
+    width: 100%;
+    position: fixed;
+    opacity: 1;
+    background-color: rgb(0, 134, 98);
+    top: 824px;
+    left: 0%;
+}
