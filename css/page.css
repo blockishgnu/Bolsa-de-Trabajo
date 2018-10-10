@@ -54,7 +54,7 @@
 
 #Body {
     float: left;
-    height: 374px;
+    height: auto;
     margin-left: 0%;
     margin-top: 0px;
     clear: both;
@@ -63,14 +63,13 @@
 
 #vacante1 {
     float: left;
-    height: 100%;
+    height: auto;
     margin-left: 25%;
-    margin-top: 0px;
+    margin-top: 25px;
     clear: none;
     width: 50%;
     margin-right: 0%;
-    position: relative;
-    background-color: red;
+
 }
 
 #bg_vacante1 {
