@@ -209,7 +209,7 @@ while ($rowl=mysqli_fetch_array($res)) {
 
         <div id="menu" class="clearfix">
           <h3 style=' display: inline-block; margin-left: 30px; margin-top:10px; color:white;'>Bienvenido: <b><?=$usuario?></b></h3>
-          <a href="#" class="actualizar_perfil" style="display: inline-block; margin-right:5px; margin-top: 10px; float: right;">Actualizar Perfil</a>
+          <a href="actualizar_perfil.php" class="actualizar_perfil" style="display: inline-block; margin-right:5px; margin-top: 10px; float: right;">Actualizar Perfil</a>
         </div>
         <div id="HEADER" class="clearfix">
           <?php

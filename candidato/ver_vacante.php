@@ -11,6 +11,10 @@ if(isset($_SESSION['usuario'])){
     $usuario= $_SESSION['usuario'];
     $tipo= $_SESSION['tipo'];
 		$idvacante=$_GET['idvacante'];
+
+
+
+
    $resultf=mysqli_query($con,"SELECT 'foto' FROM `sab_vacantes` WHERE `estatus` = 'ACTIVA'");
 	 $idclien='';
 	 $nclie='';
@@ -75,6 +79,24 @@ while($row=mysqli_fetch_array($result2)){
 
 echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/img/logout.png' width='35px;' align='right'></a>";
 
+
+ $result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
+ while ($row = mysqli_fetch_array ($result4)){
+
+if($tipo= $_SESSION['tipo']='CANDIDATO'){
+
+  $visto=$row['visto'];
+  $visto++;
+  $sql="UPDATE sab_vacantes SET visto='".$visto."' WHERE idvacante=".$idvacante."";
+  if(mysqli_query($con,$sql)){
+
+  }else{
+    echo"Error: Could not able to execute $sql.". mysqli_error($con);
+  }
+
+
+}
+
  ?>
 
 
@@ -83,37 +105,37 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
   <title>SAB |Servicios</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="../../public/sab/img/favicon.ico">
+  <link rel="shortcut icon" href="../public/sab/img/favicon.ico">
 
-  <link rel="stylesheet" href="../../public/sab/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../public/sab/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Select2 -->
-  <link rel="stylesheet" href="../../public/sab/css/select2.min.css">
+  <link rel="stylesheet" href="../public/sab/css/select2.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../public/sab/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../public/sab/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../public/sab/css/_all-skins.min.css">
-  <link rel="stylesheet" href="../../public/sab/css/all.css">
+  <link rel="stylesheet" href="../public/sab/css/_all-skins.min.css">
+  <link rel="stylesheet" href="../public/sab/css/all.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="../../public/sab/css/flat/blue.css">
+  <link rel="stylesheet" href="../public/sab/css/flat/blue.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="../../public/sab/css/morris.css">
+  <link rel="stylesheet" href="../public/sab/css/morris.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="../../public/sab/css/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="../public/sab/css/jquery-jvectormap-1.2.2.css">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="../../public/sab/css/datepicker3.css">
+  <link rel="stylesheet" href="../public/sab/css/datepicker3.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="../../public/sab/css/daterangepicker-bs3.css">
+  <link rel="stylesheet" href="../public/sab/css/daterangepicker-bs3.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="../../public/sab/css/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="../public/sab/css/bootstrap3-wysihtml5.min.css">
   <!-- DataTables -->
-    <link rel="stylesheet" href="../../public/sab/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="../public/sab/css/dataTables.bootstrap.css">
     <!-- iCheck -->
-  <link rel="stylesheet" href="../../public/sab/css/square/blue.css">
+  <link rel="stylesheet" href="../public/sab/css/square/blue.css">
 
   <?= ((isset($css))? $css : ''); ?>
 
@@ -123,7 +145,7 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 
 
   <!-- jQuery 2.1.4 -->
-   <script src="../../public/sab/js/jQuery-2.1.4.min.js"></script>
+   <script src="../public/sab/js/jQuery-2.1.4.min.js"></script>
    <!-- jQuery UI 1.11.4 -->
    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -131,55 +153,84 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
      $.widget.bridge('uibutton', $.ui.button);
    </script>
    <!-- Bootstrap 3.3.5 -->
-   <script src="../../public/sab/js/bootstrap.min.js"></script>
+   <script src="../public/sab/js/bootstrap.min.js"></script>
    <!-- Morris.js charts -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-   <script src="../../public/sab/js/morris.min.js"></script>
+   <script src="../public/sab/js/morris.min.js"></script>
    <!-- Sparkline -->
-   <script src="../../public/sab/js/jquery.sparkline.min.js"></script>
+   <script src="../public/sab/js/jquery.sparkline.min.js"></script>
    <!-- jvectormap -->
-   <script src="../../public/sab/js/jquery-jvectormap-1.2.2.min.js"></script>
-   <script src="../../public/sab/js/jquery-jvectormap-world-mill-en.js"></script>
+   <script src="../public/sab/js/jquery-jvectormap-1.2.2.min.js"></script>
+   <script src="../public/sab/js/jquery-jvectormap-world-mill-en.js"></script>
    <!-- jQuery Knob Chart -->
-   <script src="../../public/sab/js/jquery.knob.js"></script>
+   <script src="../public/sab/js/jquery.knob.js"></script>
    <!-- daterangepicker -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-   <script src="../../public/sab/js/daterangepicker.js"></script>
+   <script src="../public/sab/js/daterangepicker.js"></script>
    <!-- datepicker -->
-   <script src="../../public/sab/js/bootstrap-datepicker.js"></script>
+   <script src="../public/sab/js/bootstrap-datepicker.js"></script>
    <!-- Bootstrap WYSIHTML5 -->
-   <script src="../../public/sab/js/bootstrap3-wysihtml5.all.min.js"></script>
+   <script src="../public/sab/js/bootstrap3-wysihtml5.all.min.js"></script>
    <!-- Slimscroll -->
-   <script src="../../public/sab/js/jquery.slimscroll.min.js"></script>
+   <script src="../public/sab/js/jquery.slimscroll.min.js"></script>
    <!-- FastClick -->
-   <script src="../../public/sab/js/fastclick.min.js"></script>
+   <script src="../public/sab/js/fastclick.min.js"></script>
    <!-- AdminLTE App -->
-   <script src="../../public/sab/js/app.min.js"></script>
+   <script src="../public/sab/js/app.min.js"></script>
    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-   <script src="../../public/sab/js/dashboard.js"></script>
-   <script src="../../public/sab/js/dashboard2.js"></script>
+   <script src="../public/sab/js/dashboard.js"></script>
+   <script src="../public/sab/js/dashboard2.js"></script>
    <!-- AdminLTE for demo purposes -->
-   <script src="../../public/sab/js/demo.js"></script>
+   <script src="../public/sab/js/demo.js"></script>
    <!-- ChartJS 1.0.1 -->
-   <script src="../../public/sab/js/Chart.min.js"></script>
+   <script src="../public/sab/js/Chart.min.js"></script>
    <!-- iCheck -->
-   <script src="../../public/sab/js/icheck.min.js"></script>
+   <script src="../public/sab/js/icheck.min.js"></script>
    <!-- InputMask -->
-   <script src="../../public/sab/js/jquery.inputmask.js"></script>
-   <script src="../../public/sab/js/jquery.inputmask.date.extensions.js"></script>
-   <script src="../../public/sab/js/jquery.inputmask.extensions.js"></script>
+   <script src="../public/sab/js/jquery.inputmask.js"></script>
+   <script src="../public/sab/js/jquery.inputmask.date.extensions.js"></script>
+   <script src="../public/sab/js/jquery.inputmask.extensions.js"></script>
    <!-- Select2 -->
-   <script src="../../public/sab/js/select2.full.min.js"></script>
+   <script src="../public/sab/js/select2.full.min.js"></script>
    <!-- DataTables -->
-     <script src="../../public/sab/js/jquery.dataTables.min.js"></script>
-     <script src="../../public/sab/js/dataTables.bootstrap.min.js"></script>
+     <script src="../public/sab/js/jquery.dataTables.min.js"></script>
+     <script src="../public/sab/js/dataTables.bootstrap.min.js"></script>
 
      <!-- Notify.js -->
-   <script src="../../public/sab/js/notify.js"></script>
-   <script src="../../public/sab/js/notify.min.js"></script>
+   <script src="../public/sab/js/notify.js"></script>
+   <script src="../public/sab/js/notify.min.js"></script>
 <?= ((isset($js))? $js : ''); ?>
 
 </head>
+
+<script>
+
+function postularse(){
+
+ username='<?=$_SESSION['usuario']?>';
+ idvacante='<?=$idvacante?>';
+
+  $.ajax({
+  type:'POST',
+  url:'postulacion.php',
+  data:{username:username, idvacante:idvacante},
+  success:function(data){
+    if(data==0){
+      alert("Postulacion Correcta");
+    }else if(data==1){
+      alert("Error al postularse");
+    }else if(data==2){
+      alert("Ya te has postulado a esta vacante");
+    }
+
+  }
+
+
+  });
+}
+
+
+</script>
 
 
 				<section class="content">
@@ -243,12 +294,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 										<div class="form-group">
 											<label class="col-lg-3 col-xs-4">Descripción de Tareas</label>
 											<div class="col-lg-9 col-xs-8">
-												<?php $result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												//$categorias=mysqli_num_rows($result4);
-												//$row = mysqli_fetch_array ($result4);
-												while ($row = mysqli_fetch_array ($result4)){
+												<?php
 													echo nl2br($row['descripcion_tareas']);
-										} ?>
+										?>
 
 											</div>
 										</div>
@@ -261,10 +309,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Jornada Laboral</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['jornada_laboral'];
-										}
+
 												 ?>
 
 											</div>
@@ -278,10 +325,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Horario Laboral</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['horario_laboral'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -294,10 +340,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Tipo de Contrato</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['tipo_contrato'];
-										}
+
 												 ?>
 
 											</div>
@@ -311,14 +356,13 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Salario</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
- 											 $result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
- 											 while ($row = mysqli_fetch_array ($result4)){
+
 												 if($row['a_convenir']=='SI'){
 													 echo "A convenir";
 												 }else{
  												 echo $row['salario'];
 											 }
- 									 }
+
  												?>
 
 											</div>
@@ -332,11 +376,10 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Fecha de Contratación</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo date('d-m-Y', strtotime($row['fecha_contratacion']));
 
-										}
+
 												 ?>
 
 											</div>
@@ -351,10 +394,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<div class="col-lg-9 col-xs-8">
 
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['cantidad_vacantes'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -396,6 +438,8 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 								</div>
 							</div>
 						</div>
+            <?php
+          } ?>
 
 						<div class="col-lg-6 col-xs-12">
 							<div class="box box-success">
@@ -410,10 +454,11 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<div class="col-lg-9 col-xs-8">
 
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+                        $result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
+                        while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['experiencia'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -426,10 +471,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Rango de Edad</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['edad_minima'].' - '.$row['edad_maxima']." años";
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -442,10 +486,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Estudios Mínimos</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['estudios_minimos'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -458,10 +501,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Inglés</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['idioma'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -474,10 +516,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Lincencia de Conducir</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['licencia_conducir'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -490,10 +531,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Disponiblidad para Viajar</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['disponibilidad_viajar'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -506,10 +546,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Disponibilidad para cambiar de Residencia</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['disponibilidad_residencia'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -522,10 +561,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Personas con Discapacidad</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['personas_discapacidad'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -545,11 +583,13 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 						<div class="col-md-12">
 
 								<input id="idvacante" name="idvacante" type="hidden" value="<?= $vacante->idvacante; ?>">
-								<button type="button" class="btn btn-lg btn-success" onclick="form_postularse.submit()" style="width: 100%;"><i class="fa fa-check"></i> P O S T U L A R S E</button>
+								<button type="button" class="btn btn-lg btn-success" onclick="postularse()" style="width: 100%;"><i class="fa fa-check"></i> P O S T U L A R S E</button>
 
 						</div>
 					</div>
 				</section>
+        <?php
+      } ?>
 
 <script type="text/javascript">
 	initialize();

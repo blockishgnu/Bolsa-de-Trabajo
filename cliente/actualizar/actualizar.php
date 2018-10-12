@@ -256,7 +256,7 @@ if(isset($_SESSION['usuario'])){
 </div>
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h2 class="box-title"><b>Direccion</b></h2>
+    <h2 class="box-title"><b>Dirección</b></h2>
   </div>
 
   <div class="col-md-4">
