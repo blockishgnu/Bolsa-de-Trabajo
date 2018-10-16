@@ -1,9 +1,7 @@
 <?php
 include("../connect.php");
 session_start();
-
 $target_path = "cv/";
-$target_path = $target_path . basename( $_FILES['archivo_usuario']['name']);
 $formato='';
 $size='';
 
@@ -12,9 +10,13 @@ if (($_FILES['archivo_usuario']['name'] == !NULL) && ($_FILES['archivo_usuario']
 if (($_FILES["archivo_usuario"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
             || ($_FILES['archivo_usuario']['type'] == "application/pdf")){
               if(($_FILES['archivo_usuario']['type'] == "application/pdf")){
+                $_FILES['archivo_usuario']['name']=$_SESSION['usuario']."-".time().".pdf";
                   $formato = 'PDF';
+                  $target_path = $target_path . basename( $_FILES['archivo_usuario']['name']);
               }else if(($_FILES["archivo_usuario"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")){
-                 $formato='WORD';
+                 $formato = 'WORD';
+                 $_FILES['archivo_usuario']['name']=$_SESSION['usuario']."-".time().".docx";
+                 $target_path = $target_path . basename( $_FILES['archivo_usuario']['name']);
               }
 
               $nombre = $_FILES['archivo_usuario']['name'];
@@ -26,14 +28,16 @@ if (($_FILES["archivo_usuario"]["type"] == "application/vnd.openxmlformats-offic
               echo "fomato: ".$formato." size: ".$size."---";
 if(move_uploaded_file($_FILES['archivo_usuario']['tmp_name'], $target_path)) {
    echo "El archivo ". basename( $_FILES['archivo_usuario']['name']). " ha sido subido";
-      $result=mysqli_query($con,"SELECT * FROM sab_cv WHERE username = '".$username."'");
 
+      $result=mysqli_query($con,"SELECT * FROM sab_cv WHERE username = '".$username."'");
       while($row=mysqli_fetch_array($result)){
         if($row['formato']==$formato){
           $idcv=$row['idcv'];
         $sql="UPDATE sab_cv SET nombre='".$nombre."',size='".$size." KB',fecha='".$fecha."' WHERE idcv='".$idcv."'";
         if(mysqli_query($con,$sql)){
           echo "---Actualizado correctamente";
+          header("location:actualizar_perfil.php");
+          unlink('cv/'.$row['nombre']);
           $status='a';
         }else{
     echo "Error al actualizar";

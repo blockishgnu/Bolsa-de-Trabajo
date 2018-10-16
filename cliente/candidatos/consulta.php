@@ -60,8 +60,7 @@ echo "
    <link rel="stylesheet" href="../../public/sab/css/all.css">
    <!-- iCheck -->
    <link rel="stylesheet" href="../../public/sab/css/flat/blue.css">
-   <!-- Morris chart -->
-   <link rel="stylesheet" href="../../public/sab/css/morris.css">
+
    <!-- jvectormap -->
    <link rel="stylesheet" href="../../public/sab/css/jquery-jvectormap-1.2.2.css">
    <!-- Date Picker -->
@@ -74,6 +73,10 @@ echo "
      <link rel="stylesheet" href="../../public/sab/css/dataTables.bootstrap.css">
      <!-- iCheck -->
    <link rel="stylesheet" href="../../public/sab/css/square/blue.css">
+
+	 <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+	 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+	 <link rel="stylesheet" href="../css/datatables.min.css"/>
 
    <?= ((isset($css))? $css : ''); ?>
 
@@ -92,9 +95,7 @@ echo "
  		</script>
  		<!-- Bootstrap 3.3.5 -->
  		<script src="../../public/sab/js/bootstrap.min.js"></script>
- 		<!-- Morris.js charts -->
- 		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
- 		<script src="../../public/sab/js/morris.min.js"></script>
+
  		<!-- Sparkline -->
  		<script src="../../public/sab/js/jquery.sparkline.min.js"></script>
  		<!-- jvectormap -->
@@ -116,8 +117,7 @@ echo "
  		<!-- AdminLTE App -->
  		<script src="../../public/sab/js/app.min.js"></script>
  		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
- 		<script src="../../public/sab/js/dashboard.js"></script>
- 		<script src="../../public/sab/js/dashboard2.js"></script>
+
  		<!-- AdminLTE for demo purposes -->
  		<script src="../../public/sab/js/demo.js"></script>
  		<!-- ChartJS 1.0.1 -->
@@ -137,6 +137,9 @@ echo "
      	<!-- Notify.js -->
  		<script src="../../public/sab/js/notify.js"></script>
  		<script src="../../public/sab/js/notify.min.js"></script>
+
+		<script src="../../css/datatables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
  <?= ((isset($js))? $js : ''); ?>
 
  </head>
@@ -440,6 +443,12 @@ a.agregar:hover {
 </nav>
 
 <script>
+
+$(document).ready( function () {
+    $('#tabla_candidatos').DataTable();
+} );
+
+
 function actualizar_estatus(usuario, nombre,id ,status){
 	window.location.href = "#progreso";
 	user = usuario;
@@ -465,12 +474,12 @@ function actualizarstatus(){
            });
 }
 
-function mostrarcandidatos(username){
+function mostrarcandidatos(username,idbusqueda){
    window.location.href="#candidatoModal";
   $.ajax({
         type:'POST',
         url: 'buscarcandidatos.php',
-        data: {username:username},
+        data: {username:username, idcliente:idbusqueda},
         success:function(data){
      $("#tabla_postulaciones").html(data);
              },
@@ -482,6 +491,22 @@ function mostrarcandidatos(username){
 }
 
 
+
+function mostrarcurriculum(username){
+   window.location.href="#curriculumModal";
+  $.ajax({
+        type:'POST',
+        url: 'buscarcurriculum.php',
+        data: {username:username},
+        success:function(data){
+     $("#tabla_curriculum").html(data);
+             },
+             error:function(data){
+              //registro fallido
+              alert("Registro fallido");
+             }
+           });
+}
 
 </script>
 
@@ -496,9 +521,6 @@ function mostrarcandidatos(username){
 									<tr>
 										<th style="text-align: center !important;"></th>
 										<th style="text-align: center !important;">Nombre</th>
-										<th style="text-align: center !important;">Categoría</th>
-										<th style="text-align: center !important;">Categoría</th>
-										<th style="text-align: center !important;">Categoría</th>
 										<th style="text-align: center !important;">Tel. Celular</th>
 										<th style="text-align: center !important;">Correo</th>
 										<th style="text-align: center !important;">Sexo</th>
@@ -514,7 +536,9 @@ function mostrarcandidatos(username){
 										$idpos=$rowvac['idvacante'];
 										$respos= mysqli_query($con,"SELECT * FROM sab_postulaciones WHERE idvacante ='".$idpos."' ");
 										while($rowpos=mysqli_fetch_array($respos)){
+											if($rowpos['username']!=$userpos){
 											$userpos=$rowpos['username'];
+
 									$result = mysqli_query($con,"SELECT * FROM `sab_candidatos` WHERE username='".$userpos."'");
 									while ($row = mysqli_fetch_array ($result)) {
 										$categoria1='';
@@ -540,9 +564,6 @@ function mostrarcandidatos(username){
 										<tr>
 										<th><i class='fa fa-odnoklassniki'></i></th>
 										<th>".$row['nombre']."</th>
-										<th>".$categoria."</th>
-										<th>".$categoria2."</th>
-										<th>".$categoria3."</th>
 										<th>".$row['telefono_celular']."</th>
 										<th>".$row['email']."</th>
 										<th>".$row['sexo']."</th>
@@ -553,14 +574,21 @@ function mostrarcandidatos(username){
 										<th><a class='btn btn-social-icon btn-default btn-xs'
 											style='background:#2E9CB0'
 										title='Ver Postulaciones'
-										 onclick='mostrarcandidatos("<?=$row['username'];?>");'>
+										 onclick='mostrarcandidatos("<?=$row['username'];?>","<?=$idbusqueda?>");'>
 										 <i style='color:#fff ' class='fa fa-eye'></i></a>
+
+										 <a class='btn btn-social-icon btn-default btn-xs'
+												style='background:#2E9CB0'
+											title='Ver Curriculum'
+											 onclick='mostrarcurriculum("<?=$row['username'];?>");'>
+										 <i style='color:#fff' class="fa fa-file-text-o"></i></a>
 									 </th>
-                   <tr>
+								 </tr>
 									<?php
 								}
 							}
 						}
+					}
 									 ?>
 								</tbody>
 							</table>
@@ -607,6 +635,27 @@ function mostrarcandidatos(username){
 									</div>
 								</div>
 						</div>
+
+
+						<!-- Curriculum -->
+							<div id="curriculumModal" class="modalDialog" role="document">
+									<a href="#close" title="Close" class="close">X</a>
+									<div class="modal-content">
+										<div class="modal-header" style="background-color:#2E9CB0 !important">
+											<h3 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> SABServicios</h3>
+										</div>
+										<div class="modal-body" align="center">
+											<h4> C U R R I C U L U M </h4>
+											<div class="box-body table-responsive">
+												<table id="tabla_curriculum" class="table table-bordered table-striped">
+												</table>
+											</div>
+										</div>
+										<div class="modal-footer" style="background-color:#d2d6de !important">
+											<a type="button" href="#close" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</a>
+										</div>
+									</div>
+							</div>
 
 
 

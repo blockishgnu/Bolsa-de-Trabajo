@@ -116,7 +116,7 @@ a.ver_vacante:visited {
 
 .logo{
 
-  border:2px solid #5cbf2a;
+  border:1px solid black;
   border-radius: 10px;
   margin-left: 60px;
   -webkit-box-shadow: 10px 10px 11px 2px rgba(0,0,0,0.75);
@@ -177,6 +177,7 @@ a.actualizar_perfil:visited{
   text-decoration:none;
 }
 
+
  </style>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -188,6 +189,11 @@ a.actualizar_perfil:visited{
     <link rel="stylesheet" href="../css/boilerplate.css">
     <link rel="stylesheet" href="../css/page.css">
     <link rel="stylesheet" href="../public/sab/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="../css/datatables.min.css"/>
+
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -196,12 +202,21 @@ a.actualizar_perfil:visited{
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="../public/sab/js/select2.full.min.js"></script>
+
+
+    <script src="../css/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
   </head>
   <body>
 
     <div id="primaryContainer" class="primaryContainer clearfix">
-        <div id="footer" class="clearfix">
-          </div>
+
 <?php
 $res=mysqli_query($con,"SELECT * FROM sab_candidatos WHERE username='".$usuario."'");
 while ($rowl=mysqli_fetch_array($res)) {
@@ -209,14 +224,15 @@ while ($rowl=mysqli_fetch_array($res)) {
 
         <div id="menu" class="clearfix">
           <h3 style=' display: inline-block; margin-left: 30px; margin-top:10px; color:white;'>Bienvenido: <b><?=$usuario?></b></h3>
-          <a href="actualizar_perfil.php" class="actualizar_perfil" style="display: inline-block; margin-right:5px; margin-top: 10px; float: right;">Actualizar Perfil</a>
+         <a href="actualizar_perfil.php" class="actualizar_perfil" style="display: inline-block; margin-right:5px; margin-top: 10px; float: right;">Actualizar Perfil</a>
+         <button type="button" class="btn btn-primary" style="background-color: #555555; margin-right:5px; margin-top: 10px;  display: inline-block; float: right;"onclick="ver_postulaciones('<?=$usuario;?>');" data-toggle="modal" data-target="#myModal">Ver Postulaciones</button>
+
         </div>
         <div id="HEADER" class="clearfix">
           <?php
       echo "
       <div>
       <br>
-
       ";
       if($rowl['foto']==null){
         if($rowl['sexo']=='H'){
@@ -237,12 +253,11 @@ while ($rowl=mysqli_fetch_array($res)) {
       ";
     }
            ?>
-            <div id="selec_lists" class="clearfix">
+            <div id="selec_lists" class="clearfix" style="margin-top:0.005%;">
                 <label id="formgroup">
-                      <p id="text">
-                      CATEGORIA
-                      </p>
-                      	<div id="div_idcategoria" class="form-group">
+
+                      <p style="font-size:20px;"><b>CATEGORIA</b></p>
+                      	<div id="div_idcategoria" class="form-group" >
                       <select id="idcategoria" name="idcategoria" class="form-control select2" style="width: 100%;" onchange="carga_subcat();" tabindex="3">
                         <option value="00" selected>Seleccione una Categoría</option>
                         <?php
@@ -252,15 +267,20 @@ while ($rowl=mysqli_fetch_array($res)) {
                           }
                         ?>
                       </select>
-                      <p id="text">SUBCATEGORIA</p>
-                      <div id="div_idcategoria_detalle" class="form-group">
+                      <br>
+                      <br>
+                      <p style="font-size:20px;"><b>SUBCATEGORIA</b></p>
+                      <div id="div_idcategoria_detalle" class="form-group" >
   											<select id="idcategoria_detalle" name="vacante[idcategoria_detalle]" class="form-control select2" style="width: 100%;" tabindex="4" disabled>
   												<option value="00" selected>Seleccione una Subcategoría</option>
   											</select>
   											<label id="label_idcategoria_detalle"></label>
   										</div>
+
                       </select>
-                      <a onclick="buscar();" class="agregar" align='center'>Buscar</a>
+                    </div>
+                    <div>
+                      <a onclick="buscar();" class="agregar" align='right' style="display: inline-block;" >Buscar</a>
                     </div>
                 </label>
 
@@ -268,53 +288,54 @@ while ($rowl=mysqli_fetch_array($res)) {
         </div>
         <div id="Body" class="clearfix">
             <div id="vacante1" class="clearfix">
-              <table id="vacantes" align='center'>
-                <thead>
-                  <tr>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                     $result=mysqli_query($con,"SELECT * FROM sab_vacantes");
-                     while($row=mysqli_fetch_array($result)){
-                       echo "<tr>
-                       <th>
-                       ";
-                       ?>
-                       <img class='logo' src='data:image/png;base64,<?php echo base64_encode($row['foto']); ?>' alt='Image'  style='' >
-                      &nbsp;&nbsp;
-                      <?php
-                       echo "
-                       </th>
-                       <th><h3 align='center'>&nbsp;".$row['nombre']."&nbsp;</h3></th>
-                       <th><a href='ver_vacante.php?idvacante=".$row['idvacante']."' class='ver_vacante'>Ver Vacante</a></th>
-                        <tr>
-                        <th><hr style=' height: 12px; border: 0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);'></th>
-                        <th><hr style=' height: 12px; border: 0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);'></th>
-                        <th><hr style=' height: 12px; border: 0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);'></th>
-                        <tr>
-                       </tr>
-                       ";
 
-                     }
-                   ?>
+              <h2 align='center'><img src='../public/sab/img/Cargando.gif' width='60px;' ></img></h2>
 
-                </tbody>
-              </table>
             </div>
         </div>
     </div>
 
 
-    <footer class="main-footer">
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" align='center'><b>POSTULACIONES</b></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <table id='tabla_postulaciones' class='table table-striped table-row-border' style='width:100%'>
+
+
+            </table>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="main-footer" style="margin-top:50px; margin-left:10%; margin-right:10%; margin-bottom:20px;">
           <div class="pull-right hidden-xs">
             <b>Powered by <a href="http://www.hellodigital.mx/">Hello Digital S. de R.L. de C.V.</a></b>
           </div>
           <strong>&copy; Copyright <?= date('Y'); ?> SAB Servicios Profesionales S.A. de C.V.</strong>
+          <br>
+          <br>
         </footer>
   </body>
 </html>
 <script>
+
+
+
+
 
 $(".select2").select2();
 function carga_subcat() {
@@ -337,20 +358,41 @@ function carga_subcat() {
   });
 }
 
+window.onload=function() {
+
+  buscar();
+}
+
 function buscar(){
   idcategoria=$("#idcategoria").val();
   idcategoria_detalle=$("#idcategoria_detalle").val();
+
   $.ajax({
         type:'POST',
         url: 'buscador.php',
         data: {idcategoria:idcategoria, idcategoria_detalle:idcategoria_detalle},
         success:function(data){
           if(data!='')
-     $("#vacantes").html(data);
+     $("#vacante1").html(data);
      else{
-        $("#vacantes").html("<h2 align='center'>No vacantes de la busqueda seleccionada</h2>");
+        $("#vacante1").html("<h2 align='center'>No existen vacantes de la busqueda seleccionada</h2>");
      }
 
+             },
+             error:function(data){
+              //registro fallido
+              alert("Registro fallido");
+             }
+           });
+}
+
+function ver_postulaciones(username){
+  $.ajax({
+        type:'POST',
+        url: 'buscarpostulaciones.php',
+        data: {username:username},
+        success:function(data){
+     $("#tabla_postulaciones").html(data);
              },
              error:function(data){
               //registro fallido

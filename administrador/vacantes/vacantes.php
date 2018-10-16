@@ -80,8 +80,7 @@ if(isset($_SESSION['usuario'])){
   <link rel="stylesheet" href="../../public/sab/css/all.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="../../public/sab/css/flat/blue.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="../../public/sab/css/morris.css">
+
   <!-- jvectormap -->
   <link rel="stylesheet" href="../../public/sab/css/jquery-jvectormap-1.2.2.css">
   <!-- Date Picker -->
@@ -94,6 +93,9 @@ if(isset($_SESSION['usuario'])){
     <link rel="stylesheet" href="../../public/sab/css/dataTables.bootstrap.css">
     <!-- iCheck -->
   <link rel="stylesheet" href="../../public/sab/css/square/blue.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+  <link rel="stylesheet" href="../../css/datatables.min.css"/>
 
   <?= ((isset($css))? $css : ''); ?>
 
@@ -112,9 +114,7 @@ if(isset($_SESSION['usuario'])){
    </script>
    <!-- Bootstrap 3.3.5 -->
    <script src="../../public/sab/js/bootstrap.min.js"></script>
-   <!-- Morris.js charts -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-   <script src="../../public/sab/js/morris.min.js"></script>
+
    <!-- Sparkline -->
    <script src="../../public/sab/js/jquery.sparkline.min.js"></script>
    <!-- jvectormap -->
@@ -135,9 +135,7 @@ if(isset($_SESSION['usuario'])){
    <script src="../../public/sab/js/fastclick.min.js"></script>
    <!-- AdminLTE App -->
    <script src="../../public/sab/js/app.min.js"></script>
-   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-   <script src="../../public/sab/js/dashboard.js"></script>
-   <script src="../../public/sab/js/dashboard2.js"></script>
+
    <!-- AdminLTE for demo purposes -->
    <script src="../../public/sab/js/demo.js"></script>
    <!-- ChartJS 1.0.1 -->
@@ -157,6 +155,11 @@ if(isset($_SESSION['usuario'])){
      <!-- Notify.js -->
    <script src="../../public/sab/js/notify.js"></script>
    <script src="../../public/sab/js/notify.min.js"></script>
+
+   <script src="../../css/datatables.min.js"></script>
+   <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
+
 <?= ((isset($js))? $js : ''); ?>
 
 </head>
@@ -177,29 +180,9 @@ if(isset($_SESSION['usuario'])){
  </div>
 </nav>
 
- <div class="container">
+
 
 <style>
-	.centrado {
-		text-align: center !important;
-	}
-
-	.dt_center {
-		text-align: center !important;
-	}
-
-	.dt_left {
-		text-align: left !important;
-	}
-
-	.dt_right {
-		text-align: right !important;
-	}
-
-	.table td {
-		vertical-align: middle !important;
-	}
-
 
 
   .modalDialog {
@@ -305,6 +288,10 @@ a.agregar:hover {
 
 </style>
 <script>
+
+$(document).ready( function () {
+    $('#tabla_vacantes').DataTable();
+} );
 /*Cambio de estatus de la vacante */
 
 function cambiarStatus(id,status){
@@ -320,6 +307,7 @@ function cambiarStatus(id,status){
   $("#estatusActual").val($('#'+id).val());
   $("#idVacante").val(id);
 }
+
 
 function actualizarstatus(){
   $.ajax({
@@ -395,8 +383,8 @@ function mostrarcandidatos(idvacante){
 							<h3 class="box-title">Consulta de Vacantes</h3>
 						</div>
 
-						<div class="box-body table-responsive">
-							<table id="tabla_reclutadores" class="table table-bordered table-striped">
+						<div>
+							<table id="tabla_vacantes" class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th style="text-align: center !important;"></th>

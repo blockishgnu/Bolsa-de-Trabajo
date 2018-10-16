@@ -13,7 +13,9 @@ if(isset($_SESSION['usuario'])){
     $res=mysqli_query($con,"SELECT * FROM sab_clientes WHERE username='".$usuario."'");
     while ($rowl=mysqli_fetch_array($res)) {
    $idbusqueda=$rowl['idcliente'];
-
+  $total_postulaciones=0;
+  $total_candidatos=0;
+  $usercom='';
 echo "
 <div style='background-color: #b3ffb3;'>
 <br>
@@ -35,14 +37,19 @@ $total_vacantes=mysqli_num_rows($result);
 while($rowvac=mysqli_fetch_array($result)){
 
 $result1 = mysqli_query($con,"SELECT * FROM `sab_postulaciones` WHERE idvacante='".$rowvac['idvacante']."'");
-$total_postulaciones=mysqli_num_rows($result1);
+$total_postulaciones++;
 
 $result2 = mysqli_query($con,"SELECT * FROM `sab_clientes`");
 $total_clientes=mysqli_num_rows($result2);
 
 $result3 = mysqli_query($con,"SELECT * FROM `sab_candidatos`");
 //$total_candidatos=mysqli_num_rows($result3);
-$total_candidatos=$total_postulaciones;
+while($rowva=mysqli_fetch_array($result1)){
+    if($rowva['username']!=$usercom){
+      $usercom=$rowva['username'];
+      $total_candidatos++;
+    }
+}
 
 $result4 = mysqli_query($con,"SELECT idcategoria FROM sab_vacantes WHERE estatus = 'ACTIVA' AND idcliente ='".$idbusqueda."' ");
 
@@ -83,8 +90,7 @@ $result5 = mysqli_query($con,"SELECT * FROM `sab_candidatos`");
    <link rel="stylesheet" href="../public/sab/css/all.css">
    <!-- iCheck -->
    <link rel="stylesheet" href="../public/sab/css/flat/blue.css">
-   <!-- Morris chart -->
-   <link rel="stylesheet" href="../public/sab/css/morris.css">
+
    <!-- jvectormap -->
    <link rel="stylesheet" href="../public/sab/css/jquery-jvectormap-1.2.2.css">
    <!-- Date Picker -->
@@ -114,9 +120,6 @@ $result5 = mysqli_query($con,"SELECT * FROM `sab_candidatos`");
  		</script>
  		<!-- Bootstrap 3.3.5 -->
  		<script src="../public/sab/js/bootstrap.min.js"></script>
- 		<!-- Morris.js charts -->
- 		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
- 		<script src="../public/sab/js/morris.min.js"></script>
 
  		<!-- Sparkline -->
  		<script src="../public/sab/js/jquery.sparkline.min.js"></script>
@@ -138,9 +141,7 @@ $result5 = mysqli_query($con,"SELECT * FROM `sab_candidatos`");
  		<script src="../public/sab/js/fastclick.min.js"></script>
  		<!-- AdminLTE App -->
  		<script src="../public/sab/js/app.min.js"></script>
- 		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
- 		<script src="../public/sab/js/dashboard.js"></script>
- 		<script src="../public/sab/js/dashboard2.js"></script>
+
  		<!-- AdminLTE for demo purposes -->
  		<script src="../public/sab/js/demo.js"></script>
  		<!-- ChartJS 1.0.1 -->

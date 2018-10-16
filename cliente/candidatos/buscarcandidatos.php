@@ -8,9 +8,10 @@ echo "
 </tr>
 ";
 $username=$_POST['username'];
+$idcliente=$_POST['idcliente'];
 $result= mysqli_query($con,"SELECT * FROM sab_postulaciones WHERE username='".$username."' ORDER BY fecha");
 while($row=mysqli_fetch_array($result)){
-  $res= mysqli_query($con,"SELECT * FROM sab_vacantes WHERE idvacante='".$row['idvacante']."'");
+  $res= mysqli_query($con,"SELECT * FROM sab_vacantes WHERE idvacante='".$row['idvacante']."' AND idcliente='".$idcliente."'");
   while($rowv=mysqli_fetch_array($res)){
     $enum=array(
       0=> 'Postulada',

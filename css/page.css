@@ -31,6 +31,7 @@
     width: 100%;
     background-color: rgb(0, 134, 98);
     position: fixed;
+    z-index: 100;
     opacity: 1;
 }
 
@@ -64,11 +65,11 @@
 #vacante1 {
     float: left;
     height: auto;
-    margin-left: 25%;
     margin-top: 25px;
+    margin-left: 5%;
     clear: none;
-    width: 50%;
-    margin-right: 0%;
+    width: 90%;
+    margin-right: 5%;
 
 }
 
@@ -132,8 +133,8 @@ body {
     height: 36px;
     display: block;
     text-align: left;
-    margin-left: 34.914707%;
-    margin-top: 21px;
+    margin-left: 25px;
+    margin-top: 25px;
     clear: none;
     width: 32.151118%;
 }

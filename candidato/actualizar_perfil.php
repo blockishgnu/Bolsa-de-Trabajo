@@ -150,44 +150,34 @@ while($rowcv=mysqli_fetch_array($rescv)){
       </div>
 
       <div class="col-md-4">
-        <div id="nombre" class="form-group">
+        <div id="div_nombre" class="form-group">
           <label>Nombre</label>
-          <input id="nombre" value="<?= $row['nombre'];?>" name='nombre' type="text" class="form-control" style="text-transform: uppercase !important;" onchange="this.value=this.value.toUpperCase();" maxlength="45" placeholder="Nombre" autocomplete="off" tabindex="7">
-          <label id="nombre"></label>
+          <input id="nombre" value="<?= $row['nombre'];?>" name="nombre" type="text" class="form-control" style="text-transform: uppercase !important;" onchange="this.value=this.value.toUpperCase();" maxlength="45" placeholder="Nombre" autocomplete="off" tabindex="7">
+          <label id="label_nombre"></label>
         </div>
       </div>
 
       <div class="col-md-4">
-        <div id="apellidop" class="form-group">
+        <div id="div_apellidop" class="form-group">
           <label>Apellido Paterno</label>
           <input id="apellidop" value="<?= $row['apellido_paterno'];?>" name="apellidop" type="text" class="form-control" style="text-transform: uppercase !important;" onchange="this.value=this.value.toUpperCase();" maxlength="45" placeholder="Correo" autocomplete="off" tabindex="7">
-          <label id="apellidop"></label>
+          <label id="label_apellidop"></label>
         </div>
       </div>
 
       <div class="col-md-4">
-        <div id="apellidom" class="form-group">
+        <div id="div_apellidom" class="form-group">
           <label>Correo</label>
           <input id="apellidom" value="<?= $row['apellido_materno'];?>" name="apellidom" type="text" class="form-control" style="text-transform: uppercase !important;" onchange="this.value=this.value.toUpperCase();" maxlength="45" placeholder="Correo" autocomplete="off" tabindex="7">
-          <label id="apellidom"></label>
+          <label id="label_apellidom"></label>
         </div>
       </div>
 
-      <div class="col-md-4">
-        <label>Sexo</label><br>
-        <label>
-              <input id="sexo1" name="sexo" type="radio" class="flat-red" value="H"> Hombre
-              </label>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <label>
-                  <input id="sexo2" name="sexo" type="radio" class="flat-red" value="M"> Mujer
-                  </label>
-      </div>
 
       <div class="col-md-4">
         <div id="div_fecha_nacimiento" class="form-group">
           <label>Fecha de Nacimiento</label>
-          <input id="fecha_nacimiento" name="fecha_nacimiento" type="text" class="form-control" autocomplete="off" tabindex="10" value="<?= date('d-m-Y', strtotime($row['fecha_nacimiento'])); ?>" data-inputmask="'alias': 'dd-mm-yyyy'" data-mask>
+          <input id="fecha_nacimiento" value="<?= $row['fecha_nacimiento'];?>" name="fecha_nacimiento" type="date" class="form-control" autocomplete="off" tabindex="10" value="<?= date('d-m-Y', strtotime($row['fecha_nacimiento'])); ?>" data-inputmask="'alias': 'dd-mm-yyyy'" data-mask>
           <label id="label_fecha_nacimiento"></label>
         </div>
       </div>
@@ -195,7 +185,7 @@ while($rowcv=mysqli_fetch_array($rescv)){
       <div class="col-md-4">
         <div id="div_estado_civil" class="form-group">
           <label>Estado Civil</label>
-          <select class="form-control">
+          <select id="estado_civil" class="form-control">
             <option value="" selected>Seleccione Estado Civil</option>
             <?php
             if ($row['estado_civil'] == 'Soltero (a)') {
@@ -355,22 +345,39 @@ while($rowcv=mysqli_fetch_array($rescv)){
 
 
 <script>
-
+/*
 $("#datemask").inputmask("dd-mm-yyyy", {"placeholder": "dd-mm-yy"});
 $("[data-mask]").inputmask();
+*/
 
-<?php
-  if ($row['sexo'] == "H") {
-?>
-  document.getElementById('sexo1').checked = true;
-<?php
-  }
-  else if ($row['sexo'] == "M") {
-?>
-  document.getElementById('sexo2').checked = true;
-<?php
-  }
-?>
+function guardar(){
+  $.ajax({
+   type: "POST",
+   url:"actualizarinfo.php",
+   data:{
+   nombre:$("#nombre").val(),
+   apellido_paterno:$("#apellidop").val(),
+   apellido_materno:$("#apellidom").val(),
+   estado_civil:$("#estado_civil").val(),
+   fecha_nacimiento:$("#fecha_nacimiento").val(),
+   email:$("#correo").val(),
+   telefono_celular:$("#celular").val(),
+   telefono_casa:$("#telefono").val(),
+   calle:$("#calle").val(),
+   numero_exterior:$("#numero_ex").val(),
+   numero_interior:$("#numero_in").val(),
+   colonia:$("#colonia").val(),
+   cp:$("#cp").val(),
+   ciudad:$("#ciudad").val(),
+   municipio:$("#municipio").val(),
+   estado:$("#estado").val(),
+   pais:$("#pais").val(),
+ },
+ success :function(data){
+
+ }
+  });
+}
 
 </script>
      <?php

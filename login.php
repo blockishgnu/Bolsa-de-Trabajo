@@ -23,6 +23,11 @@
       <title>Login</title>
       <link href = "css/bootstrap.min.css" rel = "stylesheet">
 
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Temas-->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login-->
+     <link rel="stylesheet" type="text/css" href="login.css">
       <style>
          body {
             padding-top: 40px;
@@ -85,7 +90,7 @@
    <body>
 
       <h2>Iniciar Sesion</h2>
-      <div class = "container form-signin">
+      <div class = "Contenedor">
 
          <?php
             $msg = '';
@@ -117,20 +122,20 @@
             }
          ?>
       </div> <!-- /container -->
-      
-      <div class = "container">
 
-         <form class = "form-signin" role = "form"
-            action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
-            ?>" method = "post">
+      <div class = "container">
+         <form class = "form-signin" role = "form" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method = "post">
             <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
-            <input type = "text" class = "form-control"
-               name = "username" placeholder = "Usuario"
-               required autofocus></br>
-            <input type = "password" class = "form-control"
-               name = "password" placeholder = "Contraseña" required>
-            <button class = "btn btn-lg btn-primary btn-block" type = "submit"
-               name = "login">Login</button>
+            <div class="input-group input-group-lg">
+				  <span class="input-group-addon" class="form-control" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input type = "text" class = "form-control" name = "username" placeholder = "Usuario" aria-describedby="sizing-addon1" required autofocus>
+            </div>
+           </br>
+           <div class="input-group input-group-lg">
+             <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+            <input type = "password" class = "form-control" name = "password" placeholder = "Contraseña" aria-describedby="sizing-addon1" required>
+          </div>
+            <button class = "btn btn-lg btn-primary btn-block" type = "submit" name = "login">Login</button>
          </form>
 
          Limpiar variable de <a href = "logout.php" tite = "Logout">Session.
@@ -140,4 +145,8 @@
       </div>
 
    </body>
+   <!-- vinculando a libreria Jquery-->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <!-- Libreria java scritp de bootstrap -->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>
