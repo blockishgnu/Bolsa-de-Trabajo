@@ -57,6 +57,8 @@ if(isset($_SESSION['usuario'])){
        <!-- iCheck -->
      <link rel="stylesheet" href="../public/sab/css/square/blue.css">
 
+     <link rel="stylesheet" href="../css/jquery.gritter.css">
+
 
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -69,6 +71,9 @@ if(isset($_SESSION['usuario'])){
      <script src="../public/sab/js/jquery.inputmask.js"></script>
      <script src="../public/sab/js/jquery.inputmask.date.extensions.js"></script>
      <script src="../public/sab/js/jquery.inputmask.extensions.js"></script>
+
+     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="../js/jquery.gritter.js"></script>
    </head>
    <style>
    .alert{
@@ -334,7 +339,6 @@ while($rowcv=mysqli_fetch_array($rescv)){
         </div>
       </div>
 
-
       <div class="box-footer" align="right">
           <button type="button" class="btn btn-primary" onclick="guardar()" tabindex="18"><i class="fa fa-save"></i> &nbsp;Guardar</button>
       </div>
@@ -351,6 +355,7 @@ $("[data-mask]").inputmask();
 */
 
 function guardar(){
+
   $.ajax({
    type: "POST",
    url:"actualizarinfo.php",
@@ -374,6 +379,11 @@ function guardar(){
    pais:$("#pais").val(),
  },
  success :function(data){
+
+   $.gritter.add({
+    title: 'EXITO!',
+    text: 'Se ha actualizado la información correctamente'
+  });
 
  }
   });

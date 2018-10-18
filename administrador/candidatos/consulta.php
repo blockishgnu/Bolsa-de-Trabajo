@@ -67,6 +67,7 @@ $usuario=$_SESSION['usuario'];
 	 <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 	 <link rel="stylesheet"href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 	 <link rel="stylesheet" href="../../css/datatables.min.css"/>
+	 <link rel="stylesheet" href="../../css/jquery.gritter.css">
 
    <?= ((isset($css))? $css : ''); ?>
 
@@ -127,17 +128,16 @@ $usuario=$_SESSION['usuario'];
  		<script src="../../public/sab/js/notify.js"></script>
  		<script src="../../public/sab/js/notify.min.js"></script>
 
-
-
-
-
-
 	<link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
   <script src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
 
 	    <script src="../../css/datatables.min.js"></script>
 	    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+			<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		 <script src="../../js/jquery.gritter.js"></script>
 
 
  <?= ((isset($js))? $js : ''); ?>
@@ -523,7 +523,10 @@ function actualizarstatus(){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+							$.gritter.add({
+							 title: 'ERROR!',
+							 text: 'Registro Fallido'
+						 });
              }
            });
 }
@@ -538,7 +541,10 @@ function actualizar(){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+							$.gritter.add({
+							 title: 'ERROR!',
+							 text: 'Registro fallido'
+						 });
              }
            });
 }
@@ -554,7 +560,10 @@ function mostrarcandidatos(username){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+							$.gritter.add({
+							 title: 'ERROR!',
+							 text: 'Registro fallido'
+						 });
              }
            });
 }
@@ -569,8 +578,10 @@ function mostrarcurriculum(username){
      $("#tabla_curriculum").html(data);
              },
              error:function(data){
-              //registro fallido
-              alert("Registro fallido");
+							 $.gritter.add({
+								title: 'ERROR!',
+								text: 'Registro fallido'
+							});
              }
            });
 }

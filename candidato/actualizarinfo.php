@@ -1,7 +1,15 @@
 <?php
 include("../connect.php");
-
 session_start();
+
+
+$headers =  'MIME-Version: 1.0' . "\r\n";
+$headers .= 'From: Sab Servicios <no-replay@sab.com>' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$to ='blockishgnu@gmail.com';
+$subject='prueba';
+$body='Esto es una prueba';
+
 
 $username=$_SESSION['usuario'];
 $nombre=$_POST['nombre'];
@@ -42,6 +50,7 @@ pais='".$pais."'
 WHERE username='".$username."'";
 if(mysqli_query($con,$sql)){
     echo 0;
+    mail($to, $subject, $body, $headers);
 }else {
   echo 1;
 }

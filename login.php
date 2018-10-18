@@ -21,6 +21,7 @@
 
    <head>
       <title>Login</title>
+      <link rel="shortcut icon" href="public/sab/img/favicon.ico">
       <link href = "css/bootstrap.min.css" rel = "stylesheet">
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -32,7 +33,10 @@
          body {
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #ADABAB;
+            background-image: url("greenback.png");
+            background-repeat: no-repeat, repeat;
+            background-size: auto;
+
          }
 
          .form-signin {
@@ -73,10 +77,11 @@
          }
 
          .form-signin input[type="password"] {
-            margin-bottom: 10px;
+            margin-bottom: -1px;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             border-color:#017572;
+            border-color:#bfbfbf;
          }
 
          h2{
@@ -89,7 +94,6 @@
 
    <body>
 
-      <h2>Iniciar Sesion</h2>
       <div class = "Contenedor">
 
          <?php
@@ -123,24 +127,28 @@
          ?>
       </div> <!-- /container -->
 
-      <div class = "container">
-         <form class = "form-signin" role = "form" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method = "post">
-            <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
+      <div class = "container" style="margin-top:8%;">
+
+
+         <form style="background-color:white; border-radius:20px;" class = "form-signin" role = "form" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method = "post">
+           <h2 style="color:green;">Iniciar Sesion</h2>
+            <h4 class = "form-signin-heading" style="color:red;"><b><?php echo $msg; ?></b></h4>
             <div class="input-group input-group-lg">
-				  <span class="input-group-addon" class="form-control" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input type = "text" class = "form-control" name = "username" placeholder = "Usuario" aria-describedby="sizing-addon1" required autofocus>
+				     <span class="input-group-addon" class="form-control" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+             <input type = "text" class = "form-control" name = "username" placeholder = "Usuario" aria-describedby="sizing-addon1" required autofocus>
             </div>
            </br>
            <div class="input-group input-group-lg">
              <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
             <input type = "password" class = "form-control" name = "password" placeholder = "Contraseña" aria-describedby="sizing-addon1" required>
           </div>
-            <button class = "btn btn-lg btn-primary btn-block" type = "submit" name = "login">Login</button>
+        </br>
+            <button class = "btn btn-lg btn-primary btn-block" style="background:green;" type = "submit" name = "login"><b>Login</b></button>
+            <div align='center' style="color:black;" class='opcioncontra'>
+              <br>
+           <a href = "registrarse.php" tite = "Registrarse"><h4 style="color:green;"><b>Registrarse</b></h4>
+         </div>
          </form>
-
-         Limpiar variable de <a href = "logout.php" tite = "Logout">Session.
-           <br>
-        <a href = "registrarse.php" tite = "Registrarse">Registrarse.
 
       </div>
 

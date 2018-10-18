@@ -7,13 +7,7 @@ body{
 * a la izquierda y derecha
 */
 #Contenedor{
- width: 400px;
- margin: 50px auto;
- background-color: #F3EDED;
- border: 1px solid #ECE8E8;
- height: 400px;
- border-radius:8px;
- padding: 0px 9px 0px 9px;
+ text-align:center;
 }
 
 /**
