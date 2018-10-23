@@ -7,6 +7,9 @@ include("../connect.php");
 
 
 if(isset($_SESSION['usuario'])){
+  if($_SESSION['tipo']!='ADMINISTRADOR'){
+    header('Location:../index.php');
+  }
 
     $usuario= $_SESSION['usuario'];
     $tipo= $_SESSION['tipo'];

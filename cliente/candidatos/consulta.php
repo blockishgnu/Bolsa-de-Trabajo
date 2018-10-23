@@ -531,10 +531,10 @@ function mostrarcurriculum(username){
 								</thead>
 								<tbody>
 									<?php
-									$resvac = mysqli_query($con,"SELECT * FROM sab_vacantes WHERE idcliente='".$idbusqueda."'");
-									while($rowvac=mysqli_fetch_array($resvac)){
-										$idpos=$rowvac['idvacante'];
-										$respos= mysqli_query($con,"SELECT * FROM sab_postulaciones WHERE idvacante ='".$idpos."' ");
+
+										$respos= mysqli_query($con,"SELECT DISTINCT sab_postulaciones.username FROM
+									    sab_postulaciones WHERE sab_postulaciones.idvacante IN
+										(SELECT sab_vacantes.idvacante FROM sab_vacantes WHERE sab_vacantes.idcliente = '".$idbusqueda."')");
 										while($rowpos=mysqli_fetch_array($respos)){
 											if($rowpos['username']!=$userpos){
 											$userpos=$rowpos['username'];
@@ -585,7 +585,7 @@ function mostrarcurriculum(username){
 									 </th>
 								 </tr>
 									<?php
-								}
+
 							}
 						}
 					}

@@ -244,14 +244,12 @@ echo "user: ".$user;
          });
         }else{
         //alert("user:"+user+" pass:"+pass+" sexo: "+sexo);
-
         $.ajax({
               type:'POST',
               url: 'registrado.php',
               data: {user:user,pass:pass,nombre:nombre,apellidop:apellidop,apellidom:apellidom,sexo:sexo,fecha:fecha,correo:correo,celular:celular,telefono:telefono},
               success:function(data){
                 //$("#resultado").html(data);
-
                 if(data == "1"){
              $("#resultado").html("<span style='font-weight:bold;color:red;'>El nombre de usuario ya existe.</span>");
              $.gritter.add({
@@ -278,7 +276,6 @@ echo "user: ".$user;
            text: 'Ocurrio un error'
          });
         }
-
                 //n();
                   //Registro exitoso
                   //alert("Registrado exitosamente");
