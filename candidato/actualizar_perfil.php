@@ -112,6 +112,60 @@ if(isset($_SESSION['usuario'])){
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 
    }
+
+   .cv {
+	-moz-box-shadow: 0px 10px 14px -7px #3e7327;
+	-webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
+	background:-moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-o-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-ms-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352',GradientType=0);
+	background-color:#77b55a;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #4b8f29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.cv:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #77b55a));
+	background:-moz-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-webkit-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-o-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-ms-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a',GradientType=0);
+	background-color:#72b352;
+}
+.cv:active {
+	position:relative;
+	top:1px;
+}
+
+a.cv{
+  color:white;
+  text-decoration:none;
+}
+a.cv:hover{
+  color:white;
+  text-decoration:none;
+}
+a.cv:visited{
+  color:white;
+  text-decoration:none;
+}
    </style>
    <body>
      <div class="container">
@@ -142,12 +196,23 @@ if(isset($_SESSION['usuario'])){
 $rescv=mysqli_query($con,"SELECT * FROM sab_cv WHERE username='".$usuario."'");
 while($rowcv=mysqli_fetch_array($rescv)){
  ?>
-<a href="descargar.php?idcv=<?=$rowcv['idcv'];?>">Descargar CV formato: <?=$rowcv['formato'];?></a>
-<br>
+ <br>
+<a href="descargar.php?idcv=<?=$rowcv['idcv'];?>"  class="cv" >Descargar CV
 
+  <?php
+echo " ".$rowcv['formato']."  ";
+if($rowcv['formato']=='PDF'){
+  echo '<i class="fa fa-file-pdf-o" style="font-size:25px;" aria-hidden="true"></i>';
+}else{
+    echo'<i class="fa fa-file-word-o" style="font-size:25px;" aria-hidden="true"></i>';
+}
+  ?>
+</a>
+<br>
 <?php
 }
  ?>
+ <br>
 
     <div class="box box-primary">
       <div class="box-header with-border">

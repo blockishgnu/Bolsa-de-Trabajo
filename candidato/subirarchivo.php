@@ -25,9 +25,8 @@ if (($_FILES["archivo_usuario"]["type"] == "application/vnd.openxmlformats-offic
               $username= $_SESSION['usuario'];
               $status='';
 
-              echo "fomato: ".$formato." size: ".$size."---";
 if(move_uploaded_file($_FILES['archivo_usuario']['tmp_name'], $target_path)) {
-   echo "El archivo ". basename( $_FILES['archivo_usuario']['name']). " ha sido subido";
+
 
       $result=mysqli_query($con,"SELECT * FROM sab_cv WHERE username = '".$username."'");
       while($row=mysqli_fetch_array($result)){
@@ -35,12 +34,22 @@ if(move_uploaded_file($_FILES['archivo_usuario']['tmp_name'], $target_path)) {
           $idcv=$row['idcv'];
         $sql="UPDATE sab_cv SET nombre='".$nombre."',size='".$size." KB',fecha='".$fecha."' WHERE idcv='".$idcv."'";
         if(mysqli_query($con,$sql)){
-          echo "---Actualizado correctamente";
-          header("location:actualizar_perfil.php");
+          ob_start();
+          header('refresh: 1; url=actualizar_perfil.php');
+          echo "<h1 align='center'>----Actualizado correctamente----</h1>";
+          echo "<h3 align='center'>Redireccionando....</h3>";
+          ob_end_flush();
+
+          //header("location:actualizar_perfil.php");
+
           unlink('cv/'.$row['nombre']);
           $status='a';
         }else{
-    echo "Error al actualizar";
+          ob_start();
+          header('refresh: 1; url=actualizar_perfil.php');
+          echo "<h1 align='center'>----Error al actualizar----</h1>";
+          echo "<h3 align='center'>Redireccionando....</h3>";
+          ob_end_flush();
              }
         }
    }
@@ -49,16 +58,38 @@ if($status!='a'){
   $sql="INSERT INTO sab_cv (nombre,formato,size,fecha,username) VALUES ('".$nombre."','".$formato."','".$size." KB','".$fecha."','".$username."')";
 
    if(mysqli_query($con,$sql)){
-     echo"se pudo registrar el cv";
+
+     ob_start();
+     header('refresh: 1; url=actualizar_perfil.php');
+     echo "<h1 align='center'>----El archivo  ha sido subido----</h1>";
+     echo "<h3 align='center'>Redireccionando....</h3>";
+     ob_end_flush();
    }else{
-     echo "No se pudo registrar";
+     ob_start();
+     header('refresh: 1; url=actualizar_perfil.php');
+     echo "<h1 align='center'>----No se pudo registrar----</h1>";
+     echo "<h3 align='center'>Redireccionando....</h3>";
+     ob_end_flush();
 
    }
 }
 } else{
-echo "Ha ocurrido un error, trate de nuevo!";
+
+ob_start();
+header('refresh: 1; url=actualizar_perfil.php');
+echo "<h1 align='center'>----Ha ocurrido un error, trate de nuevo!----</h1>";
+echo "<h3 align='center'>Redireccionando....</h3>";
+ob_end_flush();
 }
+}else{
+
+ob_start();
+header('refresh: 1; url=actualizar_perfil.php');
+echo "<h1 align='center'>----Formato de archivo no soportado!----</h1>";
+echo "<h3 align='center'>Redireccionando....</h3>";
+ob_end_flush();
 }
+
 }
 
  ?>
