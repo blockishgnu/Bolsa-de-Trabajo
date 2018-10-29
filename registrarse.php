@@ -127,13 +127,13 @@ echo "user: ".$user;
      <div class='col-md-4'>
        <div id="div_nombre" class="form-group">
        <p><label for="pass">Contraseña:</label></p>
-       <input name="pass" type="text" id="pass" class="form-control" placeholder="Escribe tu Contraseña" /></p>
+       <input name="pass" type="password" id="pass" class="form-control" placeholder="Escribe tu Contraseña" /></p>
      </div>
      </div>
      <div class='col-md-4'>
        <div id="div_nombre" class="form-group">
        <p><label for="pass2">Repetir Contraseña:</label></p>
-       <input name="pass2" type="text" id="pass2" class="form-control" placeholder="Repite tu Contraseña" /></p>
+       <input name="pass2" type="password" id="pass2" class="form-control" placeholder="Repite tu Contraseña" /></p>
      </div>
    </div>
    <div class='col-md-4'>
@@ -225,6 +225,8 @@ echo "user: ".$user;
         celular= document.getElementById("celular").value;
         telefono= document.getElementById("telefono").value;
 
+
+
         //checar variables vacias
         if(user=="" || pass=="" || pass2=="" || nombre=="" || apellidop ==""
         || apellidom =="" || sexo =="" || fecha =="" || correo == "" || correo == "" || celular ==""){
@@ -235,6 +237,13 @@ echo "user: ".$user;
 	       });
 
         }else{
+
+          if(pass.length < 6){
+            $.gritter.add({
+             title: 'ERROR!',
+             text: 'La contraseña debe tener al menos 6 caracteres'
+           });
+  }else{
           //Comparar contraseñas
         if(pass!=pass2){
           //alert("Las contraseñas no coinciden");
@@ -244,6 +253,7 @@ echo "user: ".$user;
          });
         }else{
         //alert("user:"+user+" pass:"+pass+" sexo: "+sexo);
+
         $.ajax({
               type:'POST',
               url: 'registrado.php',
@@ -269,6 +279,12 @@ echo "user: ".$user;
            text: 'Registro exitoso'
          });
           setTimeout("location.href='login.php'", 2000);
+        }else if(data == "4"){
+          $("#resultado").html("<span style='font-weight:bold;color:red;'>No eres mayor de edad.</span>");
+          $.gritter.add({
+           title: 'ERROR!',
+           text: 'Debes ser mayor de 18 años para poder registrarte'
+         });
         }else{
           $("#resultado").html("<span style='font-weight:bold;color:red;'>Ocurrio un error intentelo mas tarde.</span>");
           $.gritter.add({
@@ -290,6 +306,7 @@ echo "user: ".$user;
            });
 
       }
+    }
     }
         return false;
       }

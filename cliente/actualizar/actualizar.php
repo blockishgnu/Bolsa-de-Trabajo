@@ -144,7 +144,7 @@ if(isset($_SESSION['usuario'])){
         <li><a href="../vacantes/vacantes.php">Vacantes</a></li>
         <li><a href="../candidatos/consulta.php">Candidatos</a></li>
         <li class="active"><a href="actualizar.php">Actualizar Perfil</a></li>
-        <li><a href="../reclutadores/reclutadores.php">Reclutadores</a></li>
+
 
       </ul>
     </div>

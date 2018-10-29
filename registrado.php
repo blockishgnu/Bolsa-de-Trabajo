@@ -20,7 +20,13 @@ $correo = $_POST['correo'];
 $celular = $_POST['celular'];
 $telefono = $_POST['telefono'];
 
+$cumpleanos =  new DateTime($fecha);
+$hoy = new DateTime();
+$annos = $hoy->diff($cumpleanos);
+$edad = $annos->y;
 //echo "user: ".$user;
+//comprobar si es mayor de edad
+if($edad>18){
 
 //comprobar si existe el usuario
 $sqlc = mysqli_query($con,"SELECT * FROM sab_usuarios WHERE username='".$user."'") or die(mysqli_error($con));
@@ -74,6 +80,9 @@ if($contar == 0){
     echo 1;
 
 
+}
+}else{
+  echo 4;
 }
 
 

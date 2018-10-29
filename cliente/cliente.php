@@ -175,7 +175,7 @@ $result5 = mysqli_query($con,"SELECT * FROM `sab_candidatos`");
         <li><a href="vacantes/vacantes.php">Vacantes</a></li>
         <li><a href="candidatos/consulta.php">Candidatos</a></li>
         <li><a href="actualizar/actualizar.php">Actualizar Perfil</a></li>
-        <li><a href="reclutadores/reclutadores.php">Reclutadores</a></li>
+      
 
       </ul>
     </div>

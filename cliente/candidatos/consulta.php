@@ -437,7 +437,7 @@ a.agregar:hover {
 		 <li><a href="../vacantes/vacantes.php">Vacantes</a></li>
 		 <li class="active"><a href="../candidatos/consulta.php">Candidatos</a></li>
 		 <li><a href="../actualizar/actualizar.php">Actualizar Perfil</a></li>
-		 <li><a href="../reclutadores/reclutadores.php">Reclutadores</a></li>
+		
 	 </ul>
  </div>
 </nav>

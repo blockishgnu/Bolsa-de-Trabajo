@@ -122,8 +122,7 @@ if($tipo= $_SESSION['tipo']='CANDIDATO'){
   <link rel="stylesheet" href="../public/sab/css/all.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="../public/sab/css/flat/blue.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="../public/sab/css/morris.css">
+
   <!-- jvectormap -->
   <link rel="stylesheet" href="../public/sab/css/jquery-jvectormap-1.2.2.css">
   <!-- Date Picker -->
@@ -154,9 +153,7 @@ if($tipo= $_SESSION['tipo']='CANDIDATO'){
    </script>
    <!-- Bootstrap 3.3.5 -->
    <script src="../public/sab/js/bootstrap.min.js"></script>
-   <!-- Morris.js charts -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-   <script src="../public/sab/js/morris.min.js"></script>
+
    <!-- Sparkline -->
    <script src="../public/sab/js/jquery.sparkline.min.js"></script>
    <!-- jvectormap -->
@@ -177,9 +174,7 @@ if($tipo= $_SESSION['tipo']='CANDIDATO'){
    <script src="../public/sab/js/fastclick.min.js"></script>
    <!-- AdminLTE App -->
    <script src="../public/sab/js/app.min.js"></script>
-   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-   <script src="../public/sab/js/dashboard.js"></script>
-   <script src="../public/sab/js/dashboard2.js"></script>
+
    <!-- AdminLTE for demo purposes -->
    <script src="../public/sab/js/demo.js"></script>
    <!-- ChartJS 1.0.1 -->
@@ -231,6 +226,8 @@ function postularse(){
 
 
 </script>
+<br>
+<br>
 
 
 				<section class="content">
@@ -251,6 +248,7 @@ function postularse(){
 									if ($uclie == 'NO') {
 								?>
 								<div class="box-body" style="text-align: justify !important;">
+
 									Esta ubicación no se puede mostrar
 								</div>
 								<?php
@@ -260,6 +258,7 @@ function postularse(){
 								<div class="box-body">
 									<div class="row">
 										<div class="col-lg-5 col-xs-12" style="text-align: justify !important;">
+                      <h3 class="box-title" style="color: #008d4c;">Descripción de la empresa</h3>
 											<?php echo $desclie; ?>
 										</div>
 
@@ -268,6 +267,9 @@ function postularse(){
 												<tr>
 													<td>
 														<div id="map_canvas" style="height: 250px;">
+                              <h3 class="box-title" style="color: #008d4c;">Dirección:</h3>
+                              <?php echo "".$calle." #".$nuex." ".$municipio." ".$estado; ?>
+
 														</div>
 													</td>
 												</tr>
@@ -590,7 +592,7 @@ function postularse(){
 				</section>
         <?php
       } ?>
-
+<!--
 <script type="text/javascript">
 	initialize();
 	gmaps_ads();
@@ -629,3 +631,4 @@ function postularse(){
 	    }
 	}
 </script>
+-->
