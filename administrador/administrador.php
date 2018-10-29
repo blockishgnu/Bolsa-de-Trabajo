@@ -1,10 +1,8 @@
 <?php
-
 session_start();
 include("../connect.php");
 
 //error_reporting(E_ALL ^ E_NOTICE);
-
 
 if(isset($_SESSION['usuario'])){
   if($_SESSION['tipo']!='ADMINISTRADOR'){
@@ -14,17 +12,20 @@ if(isset($_SESSION['usuario'])){
     $usuario= $_SESSION['usuario'];
     $tipo= $_SESSION['tipo'];
    $resultf=mysqli_query($con,"SELECT 'foto' FROM `sab_vacantes` WHERE `estatus` = 'ACTIVA'");
-
-  // echo"<img src='../public/sab/img/adm.jpg'  class='user-image' alt='User Image'>";
+   // echo"<img src='../public/sab/img/adm.jpg'  class='user-image' alt='User Image'>";
    //echo"<img src="" class="img-circle" alt="User Image">"
-
     //echo "Has iniciado sesion";
+
+    $fecha_start=date("Y")."-".date("m")."-".date(1);
+
+    $fecha_end=date("Y")."-".date("m")."-".date("d");
+
     echo "
-    <div style='background-color: #b3ffb3;'>
+    <div style='background-color: #82f435; -webkit-box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75); -moz-box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75); box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75);'>
     <br>
-    <h3 style=' margin-left: 30px; margin-top:-10px;'>Bienvenido: <b>".$usuario."</b></h3>
-    <br><img src='../public/sab/img/adm.jpg' class='img-circle' alt='User Image' width='70px;' style='border:4px solid black;  margin-left: 60px;' >
-    <a href = '../logout.php' tite = 'Logout'><img src='../public/sab/img/logout.png' width='60px;' style=' margin-right: 30px;' align='right'></a>
+    <img src='../public/sab/img/adm.jpg' class='img-circle' alt='User Image' width='40px;' style='border:2px solid black; display:inline-block;  margin-left: 60px;' >
+    <h4 style=' margin-left: 30px; color:white; display:inline-block; '>Bienvenido: <b>".$usuario."</b></h4>
+    <a href = '../logout.php' title = 'Cerrar Sesión'><img src='../public/sab/img/logout.png' width='40px;' style=' margin-right: 30px;' align='right'></a>
     <br>
     <br>
     </div>
@@ -34,7 +35,6 @@ if(isset($_SESSION['usuario'])){
 
     $result1 = mysqli_query($con,"SELECT * FROM `sab_postulaciones`");
     $total_postulaciones=mysqli_num_rows($result1);
-
 
     $result2 = mysqli_query($con,"SELECT * FROM `sab_clientes`");
     $total_clientes=mysqli_num_rows($result2);
@@ -46,11 +46,8 @@ if(isset($_SESSION['usuario'])){
     //$categorias=mysqli_num_rows($result4);
     $categorias = mysqli_fetch_array ($result4);
 
-   $result5 = mysqli_query($con,"SELECT * FROM `sab_candidatos`");
+   $result5 = mysqli_query($con,"SELECT * FROM sab_candidatos WHERE registro BETWEEN '".$fecha_start."' AND '".$fecha_end."'");
 
-      while ($row = mysqli_fetch_array ($result5)) {
-
-  }
 
 
 
@@ -58,7 +55,6 @@ if(isset($_SESSION['usuario'])){
     header("Location: ../login.php");
     exit;
 }
-
 
  ?>
 
@@ -162,8 +158,6 @@ if(isset($_SESSION['usuario'])){
     	<!-- Notify.js -->
 		<script src="../public/sab/js/notify.js"></script>
 		<script src="../public/sab/js/notify.min.js"></script>
-
-
 </head>
 <body>
 
@@ -178,7 +172,6 @@ if(isset($_SESSION['usuario'])){
        <li><a href="candidatos/consulta.php">Candidatos</a></li>
        <li><a href="clientes/clientes.php">Clientes</a></li>
        <li><a href="reclutadores/reclutadores.php">Reclutadores</a></li>
-
      </ul>
    </div>
  </nav>
@@ -410,7 +403,7 @@ if(isset($_SESSION['usuario'])){
   						<div class="col-md-4">
   							<div class="box box-primary">
   								<div class="box-header with-border">
-  									<h3 class="box-title">Nuevos Candidatos del Mes</h3>
+  									<h3 class="box-title"><h3><b>Nuevos Candidatos del Mes</b></h3></h3>
   								</div>
 
   								<div class="box-body no-padding">
@@ -418,9 +411,21 @@ if(isset($_SESSION['usuario'])){
   										<?php
   											while ($row = mysqli_fetch_array ($result5)){
   												echo "<li>
-  														<img src='' width='128px' height='128px'>
+                          ";
+                          if($row['foto']==null){
+                            if($row['sexo']=='H'){
+                            echo "<img src='../public/sab/img/men.png' width='128px' height='128px' >";
+                          }else{
+                            echo "<img src='../public/sab/img/women.png' width='128px' height='128px' >";
+                          }
+                        }else{
+                          ?>
+                          <img src='data:image/png;base64,<?php echo base64_encode($row['foto']); ?>' width='128px' height='128px'  >
+                          <?php
+                        }
+                              echo "
   														<a class='users-list-name' href='#'>".$row['nombre']."".$row['apellido_paterno']."</a>
-  														<span class='users-list-date'>'.date('d-m-Y', strtotime(".$row['registro'].")).'</span>
+  														<span class='users-list-date'>".date('d-m-Y', strtotime($row['registro']))."</span>
   													</li>";
   											}
   										?>
@@ -428,7 +433,7 @@ if(isset($_SESSION['usuario'])){
   								</div>
 
   								<div class="box-footer text-center">
-  									<a href="#" class="uppercase">Ver Todos los Candidatos</a>
+  									<a href="candidatos/consulta.php" class="uppercase">Ver Todos los Candidatos</a>
   								</div>
   							</div>
   						</div>

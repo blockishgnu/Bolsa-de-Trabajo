@@ -259,7 +259,7 @@ while($row=mysqli_fetch_array($result2)){
 												//$row = mysqli_fetch_array ($result4);
 												while ($row = mysqli_fetch_array ($result4)){
 													echo nl2br($row['descripcion_tareas']);
-										} ?>
+										 ?>
 
 											</div>
 										</div>
@@ -272,10 +272,9 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Jornada Laboral</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['jornada_laboral'];
-										}
+
 												 ?>
 
 											</div>
@@ -289,10 +288,9 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Horario Laboral</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['horario_laboral'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -305,10 +303,9 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Tipo de Contrato</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['tipo_contrato'];
-										}
+
 												 ?>
 
 											</div>
@@ -322,14 +319,13 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Salario</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
- 											 $result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
- 											 while ($row = mysqli_fetch_array ($result4)){
+
 												 if($row['a_convenir']=='SI'){
 													 echo "A convenir";
 												 }else{
  												 echo $row['salario'];
 											 }
- 									 }
+
  												?>
 
 											</div>
@@ -343,11 +339,10 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Fecha de Contratación</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo date('d-m-Y', strtotime($row['fecha_contratacion']));
 
-										}
+
 												 ?>
 
 											</div>
@@ -362,10 +357,9 @@ while($row=mysqli_fetch_array($result2)){
 											<div class="col-lg-9 col-xs-8">
 
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['cantidad_vacantes'];
-										}
+								}
 												 ?>
 											</div>
 										</div>
@@ -424,7 +418,7 @@ while($row=mysqli_fetch_array($result2)){
 												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
 												while ($row = mysqli_fetch_array ($result4)){
 													echo $row['experiencia'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -437,10 +431,9 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Rango de Edad</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['edad_minima'].' - '.$row['edad_maxima']." años";
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -453,10 +446,9 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Estudios Mínimos</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['estudios_minimos'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -469,10 +461,9 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Inglés</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['idioma'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -485,10 +476,9 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Lincencia de Conducir</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['licencia_conducir'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -501,10 +491,9 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Disponiblidad para Viajar</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['disponibilidad_viajar'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -517,35 +506,27 @@ while($row=mysqli_fetch_array($result2)){
 											<label class="col-lg-3 col-xs-4">Disponibilidad para cambiar de Residencia</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['disponibilidad_residencia'];
-										}
 												 ?>
 											</div>
 										</div>
 									</div>
-
 									<br>
-
 									<div class="row">
 										<div class="form-group">
 											<label class="col-lg-3 col-xs-4">Personas con Discapacidad</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['personas_discapacidad'];
 										}
 												 ?>
 											</div>
 										</div>
 									</div>
-
 									<br>
-
 									<div class="row">
-
 									</div>
 								</div>
 							</div>

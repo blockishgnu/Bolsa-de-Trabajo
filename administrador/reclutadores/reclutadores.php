@@ -6,16 +6,16 @@ if(isset($_SESSION['usuario'])){
 
   $usuario=$_SESSION['usuario'];
 
-  	echo "
-  	<div style='background-color: #b3ffb3;'>
-  	<br>
-  	<h3 style=' margin-left: 30px; margin-top:-10px;'>Bienvenido: <b>".$usuario."</b></h3>
-  	<br><img src='../../public/sab/img/adm.jpg' class='img-circle' alt='User Image' width='70px;' style='border:4px solid black;  margin-left: 60px;' >
-  	<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/img/logout.png' width='60px;' style=' margin-right: 30px;' align='right'></a>
-  	<br>
-  	<br>
-  	</div>
-  	";
+  echo "
+  <div style='background-color: #82f435; -webkit-box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75); -moz-box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75); box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75);'>
+  <br>
+  <img src='../../public/sab/img/adm.jpg' class='img-circle' alt='User Image' width='40px;' style='border:2px solid black; display:inline-block;  margin-left: 60px;' >
+  <h4 style=' margin-left: 30px; color:white; display:inline-block; '>Bienvenido: <b>".$usuario."</b></h4>
+  <a href = '../../logout.php' title = 'Cerrar Sesión'><img src='../../public/sab/img/logout.png' width='40px;' style=' margin-right: 30px;' align='right'></a>
+  <br>
+  <br>
+  </div>
+  ";
 
 }else{
 		header("Location: ../../login.php");

@@ -8,6 +8,7 @@ $user = $_POST["user"];
 $pass = md5($_POST['pass']);
 $tipo = 'CANDIDATO';
 $estatus = 'ACTIVO';
+$fecha_registro=date("Y")."-".date("m")."-".date("d");
 
 //datos para insertar tabla candidato
 $nombre = $_POST['nombre'];
@@ -44,8 +45,8 @@ if($contar == 0){
   if(mysqli_query($con, $sql)){
 
       //insertar informacion del candidato
-      $sql2= "INSERT INTO sab_candidatos (nombre, apellido_paterno, apellido_materno, sexo, fecha_nacimiento, email, telefono_celular, telefono_casa, username)
-      VALUES ('".$nombre."', '".$appellido_p."', '".$appellido_m."', '".$sexo."', '".$fecha."', '".$correo."', '".$celular."', '".$telefono."', '".$user."')";
+      $sql2= "INSERT INTO sab_candidatos (nombre, apellido_paterno, apellido_materno, sexo, fecha_nacimiento, email, telefono_celular, telefono_casa, registro, username)
+      VALUES ('".$nombre."', '".$appellido_p."', '".$appellido_m."', '".$sexo."', '".$fecha."', '".$correo."', '".$celular."', '".$telefono."','".$fecha_registro."', '".$user."')";
 
         if(mysqli_query($con,$sql2)){
 

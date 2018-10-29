@@ -18,15 +18,15 @@ if(isset($_SESSION['usuario'])){
    $idbusqueda=$rowl['idcliente'];
 
    echo "
-   <div style='background-color: #b3ffb3;'>
+   <div style='background-color: #82f435; -webkit-box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75); -moz-box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75); box-shadow: inset 2px 35px 46px 0px rgba(0,0,0,0.75);'>
    <br>
-   <h3 style=' margin-left: 30px; margin-top:-10px;'>Bienvenido: <b>".$usuario."</b></h3>
    ";
    ?>
-   <br><img src='data:image/png;base64,<?php echo base64_encode($rowl['logo']); ?>' class='img-circle' alt='User Image' width='70px;' style='border:4px solid black;  margin-left: 60px;' >
+   <br><img src='data:image/png;base64,<?php echo base64_encode($rowl['logo']); ?>' class='img-circle' alt='User Image' width='50px;' style='border:4px solid black; display:inline-block; margin-left: 60px;' >
    <?php
-   echo "
-   <a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/img/logout.png' width='60px;' style=' margin-right: 30px;' align='right'></a>
+    echo "
+    <h4 style='display:inline-block; color:white; margin-left: 30px;'>Bienvenido: <b>".$usuario."</b></h4>
+   <a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/img/logout.png' width='40px;' style=' display:inline-block;margin-right: 30px;' align='right'></a>
    <br>
    <br>
    </div>

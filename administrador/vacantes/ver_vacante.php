@@ -248,7 +248,7 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 												//$row = mysqli_fetch_array ($result4);
 												while ($row = mysqli_fetch_array ($result4)){
 													echo nl2br($row['descripcion_tareas']);
-										} ?>
+										?>
 
 											</div>
 										</div>
@@ -261,10 +261,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Jornada Laboral</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['jornada_laboral'];
-										}
+
 												 ?>
 
 											</div>
@@ -278,10 +277,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Horario Laboral</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['horario_laboral'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -294,10 +292,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Tipo de Contrato</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['tipo_contrato'];
-										}
+
 												 ?>
 
 											</div>
@@ -311,14 +308,13 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Salario</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
- 											 $result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
- 											 while ($row = mysqli_fetch_array ($result4)){
+
 												 if($row['a_convenir']=='SI'){
 													 echo "A convenir";
 												 }else{
  												 echo $row['salario'];
 											 }
- 									 }
+
  												?>
 
 											</div>
@@ -332,11 +328,10 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Fecha de Contratación</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo date('d-m-Y', strtotime($row['fecha_contratacion']));
 
-										}
+
 												 ?>
 
 											</div>
@@ -351,10 +346,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<div class="col-lg-9 col-xs-8">
 
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['cantidad_vacantes'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -389,6 +383,7 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 													echo $row['estado'];
 
 										}
+                  }
 												 ?>
 											</div>
 										</div>
@@ -410,10 +405,14 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<div class="col-lg-9 col-xs-8">
 
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
+
+                       $result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
+												//$categorias=mysqli_num_rows($result4);
+												//$row = mysqli_fetch_array ($result4);
 												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['experiencia'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -426,10 +425,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Rango de Edad</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['edad_minima'].' - '.$row['edad_maxima']." años";
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -442,10 +440,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Estudios Mínimos</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['estudios_minimos'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -458,10 +455,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Inglés</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['idioma'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -474,10 +470,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Lincencia de Conducir</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['licencia_conducir'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -490,10 +485,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Disponiblidad para Viajar</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['disponibilidad_viajar'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -506,10 +500,9 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Disponibilidad para cambiar de Residencia</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['disponibilidad_residencia'];
-										}
+
 												 ?>
 											</div>
 										</div>
@@ -522,8 +515,7 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
 											<label class="col-lg-3 col-xs-4">Personas con Discapacidad</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-												$result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
-												while ($row = mysqli_fetch_array ($result4)){
+
 													echo $row['personas_discapacidad'];
 										}
 												 ?>
