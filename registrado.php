@@ -42,8 +42,6 @@ if($contar == 0){
 
   if($contem==0){
 
-
-
   //insertar usuario
   $sql = "INSERT INTO sab_usuarios (username, password, tipo, estatus)
   VALUES ('".$user."', '".$pass."', '".$tipo."', '".$estatus."')";
