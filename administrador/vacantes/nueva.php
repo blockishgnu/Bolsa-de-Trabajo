@@ -94,6 +94,9 @@ if(isset($_SESSION['usuario'])){
    <!-- iCheck -->
   <link rel="stylesheet" href="../../public/sab/css/square/blue.css">
 
+  <link rel="stylesheet" href="../../css/jquery.gritter.css">
+
+
   <?= ((isset($css))? $css : ''); ?>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -156,6 +159,8 @@ if(isset($_SESSION['usuario'])){
     <!-- Notify.js -->
   <script src="../../public/sab/js/notify.js"></script>
   <script src="../../public/sab/js/notify.min.js"></script>
+
+  <script src="../../js/jquery.gritter.js"></script>
  <?= ((isset($js))? $js : ''); ?>
 
  </head>

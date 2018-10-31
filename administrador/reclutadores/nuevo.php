@@ -59,6 +59,7 @@ if(isset($_SESSION['usuario'])){
        <link rel="stylesheet" href="../../public/sab/css/dataTables.bootstrap.css">
        <!-- iCheck -->
      <link rel="stylesheet" href="../../public/sab/css/square/blue.css">
+		 <link rel="stylesheet" href="../../css/jquery.gritter.css">
 
      <?= ((isset($css))? $css : ''); ?>
 
@@ -122,6 +123,8 @@ if(isset($_SESSION['usuario'])){
        	<!-- Notify.js -->
    		<script src="../../public/sab/js/notify.js"></script>
    		<script src="../../public/sab/js/notify.min.js"></script>
+
+			<script src="../../js/jquery.gritter.js"></script>
    <?= ((isset($js))? $js : ''); ?>
 
    </head>

@@ -59,6 +59,8 @@ if(isset($_SESSION['usuario'])){
        <!-- iCheck -->
      <link rel="stylesheet" href="../../public/sab/css/square/blue.css">
 
+		 <link rel="stylesheet" href="../../css/jquery.gritter.css">
+
      <?= ((isset($css))? $css : ''); ?>
 
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -76,9 +78,7 @@ if(isset($_SESSION['usuario'])){
    		</script>
    		<!-- Bootstrap 3.3.5 -->
    		<script src="../../public/sab/js/bootstrap.min.js"></script>
-   		<!-- Morris.js charts -->
-   		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-   		<script src="../../public/sab/js/morris.min.js"></script>
+
    		<!-- Sparkline -->
    		<script src="../../public/sab/js/jquery.sparkline.min.js"></script>
    		<!-- jvectormap -->
@@ -99,9 +99,7 @@ if(isset($_SESSION['usuario'])){
    		<script src="../../public/sab/js/fastclick.min.js"></script>
    		<!-- AdminLTE App -->
    		<script src="../../public/sab/js/app.min.js"></script>
-   		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-   		<script src="../../public/sab/js/dashboard.js"></script>
-   		<script src="../../public/sab/js/dashboard2.js"></script>
+
    		<!-- AdminLTE for demo purposes -->
    		<script src="../../public/sab/js/demo.js"></script>
    		<!-- ChartJS 1.0.1 -->
@@ -121,6 +119,8 @@ if(isset($_SESSION['usuario'])){
        	<!-- Notify.js -->
    		<script src="../../public/sab/js/notify.js"></script>
    		<script src="../../public/sab/js/notify.min.js"></script>
+
+			<script src="../../js/jquery.gritter.js"></script>
    <?= ((isset($js))? $js : ''); ?>
 
    </head>
@@ -329,12 +329,18 @@ if(isset($_SESSION['usuario'])){
               nombre:nombre},
             success:function(data){
               if(data==0){
-                //alert("Registro exitoso");
+								$.gritter.add({
+					       title: 'EXITO!',
+					       text: 'Se ha actualizado la información correctamente'
+					     });
                 $("#resultado").html("<span style='font-weight:bold;color:black;'>Registrado exitosamente.</span>");
                 setTimeout("location.href='clientes.php'", 1000);
               }else if(data==1){
                 $("#resultado").html("<span style='font-weight:bold;color:red;'>El nombre de usuario ya existe.</span>");
-                //alert("El nombre de usuario ya existe");
+								$.gritter.add({
+					       title: 'ERROR!',
+					       text: 'El nombre de usuario ya esta registrado'
+					     });
               }
 
             },

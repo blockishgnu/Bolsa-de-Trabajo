@@ -76,7 +76,9 @@ echo "
 
 	 <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 	 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
-	 <link rel="stylesheet" href="../css/datatables.min.css"/>
+	 <link rel="stylesheet" href="../../css/datatables.min.css"/>
+
+   <link rel="stylesheet" href="../../css/jquery.gritter.css">
 
    <?= ((isset($css))? $css : ''); ?>
 
@@ -140,6 +142,8 @@ echo "
 
 		<script src="../../css/datatables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <script src="../../js/jquery.gritter.js"></script>
  <?= ((isset($js))? $js : ''); ?>
 
  </head>
@@ -437,7 +441,7 @@ a.agregar:hover {
 		 <li><a href="../vacantes/vacantes.php">Vacantes</a></li>
 		 <li class="active"><a href="../candidatos/consulta.php">Candidatos</a></li>
 		 <li><a href="../actualizar/actualizar.php">Actualizar Perfil</a></li>
-		
+
 	 </ul>
  </div>
 </nav>
@@ -469,7 +473,10 @@ function actualizarstatus(){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+              $.gritter.add({
+               title: 'ERROR!',
+               text: 'Registro fallido'
+             });
              }
            });
 }
@@ -485,7 +492,10 @@ function mostrarcandidatos(username,idbusqueda){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+              $.gritter.add({
+               title: 'ERROR!',
+               text: 'Registro fallido'
+             });
              }
            });
 }
@@ -503,7 +513,10 @@ function mostrarcurriculum(username){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+              $.gritter.add({
+               title: 'ERROR!',
+               text: 'Registro fallido'
+             });
              }
            });
 }

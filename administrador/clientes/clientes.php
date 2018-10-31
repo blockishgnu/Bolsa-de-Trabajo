@@ -62,12 +62,15 @@ if(isset($_SESSION['usuario'])){
 		<link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 		<link rel="stylesheet"href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 		<link rel="stylesheet" href="../../css/datatables.min.css"/>
+		<link rel="stylesheet" href="../../css/jquery.gritter.css">
 
     <?= ((isset($css))? $css : ''); ?>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 
 
     <!-- jQuery 2.1.4 -->
@@ -129,6 +132,7 @@ if(isset($_SESSION['usuario'])){
 
 			<script src="../../css/datatables.min.js"></script>
 			<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+			<script src="../../js/jquery.gritter.js"></script>
 
   <?= ((isset($js))? $js : ''); ?>
 
@@ -301,7 +305,10 @@ function eliminar(){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+							$.gritter.add({
+				       title: 'ERROR!',
+				       text: 'Registro fallido'
+				     });
              }
            });
 

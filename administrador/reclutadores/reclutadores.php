@@ -61,6 +61,8 @@ if(isset($_SESSION['usuario'])){
        <!-- iCheck -->
      <link rel="stylesheet" href="../../public/sab/css/square/blue.css">
 
+     <link rel="stylesheet" href="../../css/jquery.gritter.css">
+
      <?= ((isset($css))? $css : ''); ?>
 
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -126,6 +128,8 @@ if(isset($_SESSION['usuario'])){
 
       <script src="../../css/datatables.min.js"></script>
       <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+      <script src="../../js/jquery.gritter.js"></script>
 
    <?= ((isset($js))? $js : ''); ?>
 
@@ -299,7 +303,10 @@ if(isset($_SESSION['usuario'])){
               },
               error:function(data){
                //registro fallido
-               alert("Registro fallido");
+               $.gritter.add({
+                title: 'ERROR!',
+                text: 'Regstro fallido'
+              });
               }
             });
 

@@ -136,6 +136,8 @@ if($tipo= $_SESSION['tipo']='CANDIDATO'){
     <!-- iCheck -->
   <link rel="stylesheet" href="../public/sab/css/square/blue.css">
 
+  <link rel="stylesheet" href="../css/jquery.gritter.css">
+
   <?= ((isset($css))? $css : ''); ?>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -194,6 +196,9 @@ if($tipo= $_SESSION['tipo']='CANDIDATO'){
      <!-- Notify.js -->
    <script src="../public/sab/js/notify.js"></script>
    <script src="../public/sab/js/notify.min.js"></script>
+
+   <script src="../js/jquery.gritter.js"></script>
+   
 <?= ((isset($js))? $js : ''); ?>
 
 </head>
@@ -211,11 +216,20 @@ function postularse(){
   data:{username:username, idvacante:idvacante},
   success:function(data){
     if(data==0){
-      alert("Postulacion Correcta");
+      $.gritter.add({
+       title: 'EXITO!',
+       text: 'Te has postulado correctamente'
+     });
     }else if(data==1){
-      alert("Error al postularse");
+      $.gritter.add({
+       title: 'ERROR!',
+       text: 'No se ha podido postular, intentelo de nuevo'
+     });
     }else if(data==2){
-      alert("Ya te has postulado a esta vacante");
+      $.gritter.add({
+       title: 'AVISO!',
+       text: 'Ya te has postulado a esta vacante'
+     });
     }
 
   }

@@ -68,6 +68,8 @@ if(isset($_SESSION['usuario'])){
     <!-- iCheck -->
   <link rel="stylesheet" href="../../public/sab/css/square/blue.css">
 
+  <link rel="stylesheet" href="../../css/jquery.gritter.css">
+
   <?= ((isset($css))? $css : ''); ?>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -130,6 +132,8 @@ if(isset($_SESSION['usuario'])){
       <!-- Notify.js -->
     <script src="../../public/sab/js/notify.js"></script>
     <script src="../../public/sab/js/notify.min.js"></script>
+
+    <script src="../../js/jquery.gritter.js"></script>
 <?= ((isset($js))? $js : ''); ?>
 
 </head>
@@ -376,13 +380,19 @@ if(isset($_SESSION['usuario'])){
 
        success:function(data){
            if(data==0){
-             alert("Se ha guardado con exito");
+             $.gritter.add({
+              title: 'EXITO!',
+              text: 'Se ha actualizado la información correctamente'
+            });
              window.setTimeout("window.location.href='Actualizar.php'", 1000);
            }
        },
        error:function(data){
         //registro fallido
-        alert("Registro fallido");
+        $.gritter.add({
+         title: 'ERROR!',
+         text: 'Registro fallido'
+       });
        }
      });
    }

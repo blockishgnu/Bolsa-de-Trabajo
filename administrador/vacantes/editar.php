@@ -102,6 +102,8 @@ if(isset($_SESSION['usuario'])){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  <link rel="stylesheet" href="../../css/jquery.gritter.css">
+
 
   <!-- jQuery 2.1.4 -->
  	<script src="../../public/sab/js/jQuery-2.1.4.min.js"></script>
@@ -158,6 +160,8 @@ if(isset($_SESSION['usuario'])){
  		<!-- Notify.js -->
  	<script src="../../public/sab/js/notify.js"></script>
  	<script src="../../public/sab/js/notify.min.js"></script>
+
+  <script src="../../js/jquery.gritter.js"></script>
  <?= ((isset($js))? $js : ''); ?>
 
  </head>
@@ -1307,13 +1311,19 @@ if(isset($_SESSION['usuario'])){
 
                 success:function(data){
                     if(data==0){
-                      alert("Registro exitoso");
+                      $.gritter.add({
+                       title: 'EXITO!',
+                       text: 'Se ha actualizado la información correctamente'
+                     });
                       window.setTimeout("window.location.href='vacantes.php'", 3000);
                     }
       					},
       					error:function(data){
       					 //registro fallido
-      					 alert("Registro fallido");
+                 $.gritter.add({
+                  title: 'ERROR!',
+                  text: 'Registro fallido'
+                });
       					}
       				});
 		}

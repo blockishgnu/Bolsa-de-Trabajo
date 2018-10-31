@@ -101,7 +101,9 @@ if(isset($_SESSION['usuario'])){
 
   <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
-  <link rel="stylesheet" href="../css/datatables.min.css"/>
+  <link rel="stylesheet" href="../../css/datatables.min.css"/>
+
+  <link rel="stylesheet" href="../../css/jquery.gritter.css">
 
   <?= ((isset($css))? $css : ''); ?>
 
@@ -165,6 +167,8 @@ if(isset($_SESSION['usuario'])){
 
    <script src="../../css/datatables.min.js"></script>
    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+   <script src="../../js/jquery.gritter.js"></script>
 <?= ((isset($js))? $js : ''); ?>
 
 </head>
@@ -325,7 +329,10 @@ function actualizarstatus(){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+              $.gritter.add({
+               title: 'ERROR!',
+               text: 'Registro fallido'
+             });
              }
            });
 
@@ -352,7 +359,10 @@ function eliminar(){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+              $.gritter.add({
+               title: 'ERROR!',
+               text: 'Registro fallido'
+             });
              }
            });
 
@@ -370,7 +380,10 @@ function mostrarcandidatos(idvacante){
              },
              error:function(data){
               //registro fallido
-              alert("Registro fallido");
+              $.gritter.add({
+               title: 'ERROR!',
+               text: 'Registro fallido'
+             });
              }
            });
 }
