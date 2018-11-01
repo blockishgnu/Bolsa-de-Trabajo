@@ -198,10 +198,22 @@ if($tipo= $_SESSION['tipo']='CANDIDATO'){
    <script src="../public/sab/js/notify.min.js"></script>
 
    <script src="../js/jquery.gritter.js"></script>
-   
+
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128389690-1"></script>
+
 <?= ((isset($js))? $js : ''); ?>
 
 </head>
+
+<!-- Google Analytics script -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-128389690-1');
+</script>
 
 <script>
 

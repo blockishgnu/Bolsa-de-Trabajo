@@ -74,7 +74,20 @@ if(isset($_SESSION['usuario'])){
 
      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
    <script src="../js/jquery.gritter.js"></script>
+
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128389690-1"></script>
    </head>
+
+<!--Google Analytics script -->
+   <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'UA-128389690-1');
+   </script>
+
    <style>
    .alert{
    	position: absolute;
