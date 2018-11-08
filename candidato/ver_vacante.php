@@ -83,7 +83,7 @@ echo "<a href = '../../logout.php' tite = 'Logout'><img src='../../public/sab/im
  $result4 = mysqli_query($con,"SELECT * FROM `sab_vacantes` WHERE idvacante=".$idvacante." ");
  while ($row = mysqli_fetch_array ($result4)){
 
-if($tipo= $_SESSION['tipo']='CANDIDATO'){
+if($_SESSION['tipo']=='CANDIDATO'){
 
   $visto=$row['visto'];
   $visto++;
@@ -404,9 +404,7 @@ function postularse(){
 											<label class="col-lg-3 col-xs-4">Fecha de Contratación</label>
 											<div class="col-lg-9 col-xs-8">
 												<?php
-
 													echo date('d-m-Y', strtotime($row['fecha_contratacion']));
-
 
 												 ?>
 
